@@ -1,12 +1,13 @@
 import React, {
     Component
 } from 'react';
+import { Link } from 'react-router-dom'
 
 class NewsletterListItem extends Component {
     render() {
         return (
             <li className="List-item">
-                <h2>Issue {this.props.issue}</h2>
+                <h2><Link to={'issues/' + this.props.issue}>Issue {this.props.issue}</Link></h2>
             </li>
         );
     }
