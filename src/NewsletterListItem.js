@@ -7,7 +7,7 @@ class NewsletterListItem extends Component {
     render() {
         return (
             <li className="List-item">
-                <h2><Link to={'issues/' + this.props.issue}>Issue {this.props.issue}</Link></h2>
+                <h2><Link to={`${this.props.issue}`}>Issue {this.props.issue}</Link></h2>
             </li>
         );
     }

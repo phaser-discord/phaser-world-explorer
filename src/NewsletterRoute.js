@@ -5,6 +5,7 @@ import Media from "react-media";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import jsyaml from 'js-yaml';
 import NewsletterList from './NewsletterList'
+import NewsletterView from './NewsletterView'
 
 class NewsLetterRoute extends Component {
   constructor(props) {
@@ -40,13 +41,13 @@ class NewsLetterRoute extends Component {
 
   render() {
     const NewsletterListRoute = () => {
-      return this.state.isLoaded ? <NewsletterList className="List-view" listItems={this.state.items} /> : null
+      return this.state.isLoaded ? <NewsletterList listItems={this.state.items} /> : null
+    }
+    const NewsletterViewRoute = props => {
+      return this.state.isLoaded ? <NewsletterView {...props} issues={this.state.items} /> : null
     }
     const NewsletterHomeRoute = () => {
       return <p>Home view...</p>
-    }
-    const NewsletterViewRoute = () => {
-      return <p>Coming soon...</p>
     }
 
     return (
@@ -56,12 +57,12 @@ class NewsLetterRoute extends Component {
           ? <div><Switch>
             <Route exact path="/issues/" render={NewsletterListRoute} />
             <Route exact path="/issues/home" render={NewsletterHomeRoute} />
-            <Route path="/issues/:id" render={NewsletterViewRoute} />
+            <Route path="/issues/:issue" render={NewsletterViewRoute} />
           </Switch></div>
           // large screen does!
           : <div><NewsletterListRoute /><Switch>
             <Route exact path="/issues/home" render={NewsletterHomeRoute} />
-            <Route path="/issues/:id" render={NewsletterViewRoute} />
+            <Route path="/issues/:issue" render={NewsletterViewRoute} />
             <Redirect from="/issues" to="/issues/home" />
           </Switch></div>
         }
