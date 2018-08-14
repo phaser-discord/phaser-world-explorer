@@ -9,3 +9,12 @@
 .App-title {
   font-size: 1.5em;
 }
+
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #428bca;
+}

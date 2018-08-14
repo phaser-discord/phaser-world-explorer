@@ -28,25 +28,33 @@ class NewsletterView extends Component {
                     </div>
                     : null
                 }
-                <div>
-                    <h3>Tutorials</h3>
-                    <ul>{this.currentIssue().Tutorials.map(tutorial => {
-                        return <li key={tutorial.name}>
-                            <h4>{tutorial.name}</h4>
-                            <p>{tutorial.desc}</p>
-                            <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
-                        </li>
-                    })}
-                    </ul>
-                </div>
-                <div>
-                    <h3>Updates</h3>
-                    This issue contains info on the following systems/plugins/features:
+                {this.currentIssue().Tutorials ?
+                    <div>
+                        <h3>Tutorials</h3>
+                        <ul>{this.currentIssue().Tutorials.map(tutorial => {
+                            return <li key={tutorial.name}>
+                                <h4>{tutorial.name}</h4>
+                                <p>{tutorial.desc}</p>
+                                <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
+                                <p><a href={tutorial.link} target="_blank" rel="noopener">Link</a></p>
+                                {tutorial.directlink ? <p><a href={tutorial.directlink} target="_blank" rel="noopener">Direct Link</a></p> : null}
+                            </li>
+                        })}
+                        </ul>
+                    </div>
+                    : null
+                }
+                {this.currentIssue().Updates ?
+                    <div>
+                        <h3>Updates</h3>
+                        This issue contains info/updates on the following Phaser-relared systems/plugins/features/projects:
                     <ul>{this.currentIssue().Updates.map(update => {
-                        return <li key={update}>{update}</li>
-                    })}
-                    </ul>
-                </div>
+                            return <li key={update}>{update}</li>
+                        })}
+                        </ul>
+                    </div>
+                    : null
+                }
             </div>
         );
     }
