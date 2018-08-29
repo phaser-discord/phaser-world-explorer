@@ -1,13 +1,11 @@
-import React, {
-  Component
-} from 'react';
-import { Route, Switch } from 'react-router-dom'
+import React from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.css';
 import NewsletterRoute from './NewsletterRoute'
 import NewsletterList from './NewsletterList'
 import { NewsletterProvider } from './NewsletterContext'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
@@ -18,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route path="/newsletter" component={NewsletterRoute} />
             <Route exact path="/" component={NewsletterList} />
-            <Route path="" component={NewsletterList} />
+            <Redirect to="/" />
           </Switch>
         </NewsletterProvider>
       </div>

@@ -4,12 +4,6 @@ import './NewsletterView.css'
 import { withNewsletter } from './NewsletterContext'
 
 class NewsletterView extends React.Component {
-    constructor(props) {
-        super(props)
-        console.log(`NewsletterView`)
-        console.log(props)
-    }
-
     currentIssue() {
         const { isLoaded, items } = this.props.newsletter
         if (!isLoaded) {
@@ -22,8 +16,6 @@ class NewsletterView extends React.Component {
     }
 
     render() {
-        console.log(`NewsletterView : render`)
-        console.log(this.props)
         const issue = this.currentIssue()
         if (!issue) {
             return null

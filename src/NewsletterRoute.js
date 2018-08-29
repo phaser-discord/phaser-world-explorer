@@ -5,7 +5,6 @@ import Media from "react-media";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import NewsletterList from './NewsletterList'
 import NewsletterView from './NewsletterView'
-import SearchResults from './SearchResults'
 
 const SmallScreen = ({ children }) => (
   <div>
@@ -41,10 +40,11 @@ const LargeScreen = ({ children }) => (
 
 class NewsLetterRoute extends Component {
   render() {
-    console.log('NewsletterRoute # render')
     const routes = (
       <Switch>
         <Route path="/newsletter/issue/:issue" component={NewsletterView} />
+        <Route exact path="/" component={NewsletterList} />
+        <Redirect to="/" />
       </Switch>
     )
 

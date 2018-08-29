@@ -48,10 +48,7 @@ export class NewsletterProvider extends React.Component {
 }
 
 export const withNewsletter = (Component) =>
-  (props) => {
-    console.log(JSON.stringify(props))
-    console.log(Component)
-    return (
+  (props) =>
     <Context.Consumer>
       {
         ({ isLoaded, error, items }) =>
@@ -61,5 +58,3 @@ export const withNewsletter = (Component) =>
           />
       }
     </Context.Consumer>
-  )
-}
