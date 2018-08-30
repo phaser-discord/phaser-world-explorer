@@ -26,7 +26,7 @@ class NewsletterList extends React.Component {
           <ul>
             {items.map(item =>
               <li>
-                <NewsletterListItem key={item.Issue } item={item} />
+                <NewsletterListItem key={item.Issue} item={item} />
               </li>
             )}
           </ul>

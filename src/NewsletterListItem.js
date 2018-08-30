@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NewsletterListItem = ({ item }) =>
   item ? (
-    <Link to={`/newsletter/issue/${item.Issue}`}>
+    <Link to={`${process.env.PUBLIC_URL}/newsletter/issue/${item.Issue}`}>
       Issue {item.Issue}
     </Link>
   ) : null
