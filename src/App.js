@@ -1,8 +1,8 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
+
 import './App.css';
 import NewsletterRoute from './NewsletterRoute'
-import NewsletterList from './NewsletterList'
 import { NewsletterProvider } from './NewsletterContext'
 
 class App extends React.Component {
@@ -15,7 +15,7 @@ class App extends React.Component {
           </header>
           <Switch>
             <Route path="/newsletter" component={NewsletterRoute} />
-            <Route exact path="/" component={NewsletterList} />
+            <Route exact path="/" component={NewsletterRoute} />
             <Redirect to="/" />
           </Switch>
         </NewsletterProvider>

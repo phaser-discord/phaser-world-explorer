@@ -1,49 +1,54 @@
-import React, {
-  Component
-} from 'react';
-import Media from "react-media";
+import React from 'react'
+import Media from "react-media"
 import { Route, Switch, Redirect } from 'react-router-dom'
+import Collapsible from 'react-collapsible'
+
 import NewsletterList from './NewsletterList'
 import NewsletterView from './NewsletterView'
 
-const SmallScreen = ({ children }) => (
+import './NewsletterRoute.css'
+
+const menuTrigger = (
   <div>
-    <div>
-      Header
+    <h3>Newsletter Back Issues</h3>
+  </div>
+)
+
+const SmallScreen = ({ children }) => (
+  <div className="vertPanels">
+    <div className="topPanel">
+      <div>
+        <Collapsible open={false} trigger={menuTrigger}>
+          <NewsletterList />
+        </Collapsible>
+      </div>
     </div>
-    <div>
-      Collapseable Nav
+    <div className="bottomPanel">
+      {children}
     </div>
-    <div>
-      Search
-    </div>
-    {children}
   </div>
 )
 
 const LargeScreen = ({ children }) => (
-  <div>
-    <div>
+  <div className="horizPanels">
+    <div className="leftPanel">
       <div>
-        Left Panel
-      </div>
-      <div>
-        - Newsletters
+        <NewsletterList showHeader />
       </div>
     </div>
 
-    <div>
+    <div className="rightPanel">
       <div>{children}</div>
     </div>
   </div>
 )
 
-class NewsLetterRoute extends Component {
+class NewsLetterRoute extends React.Component {
   render() {
     const routes = (
       <Switch>
         <Route path="/newsletter/issue/:issue" component={NewsletterView} />
-        <Route exact path="/" component={NewsletterList} />
+        <Route exact path="/newsletter" component={NewsletterView} />
         <Redirect to="/" />
       </Switch>
     )
@@ -52,8 +57,7 @@ class NewsLetterRoute extends Component {
       ? <SmallScreen>{routes}</SmallScreen>
       : <LargeScreen>{routes}</LargeScreen>
 
-
-    return <Media query={{ maxWidth: 599 }}>{screenLayout}</Media>
+    return <Media query={{ maxWidth: 959 }}>{screenLayout}</Media>
   }
 }
 

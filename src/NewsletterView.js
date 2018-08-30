@@ -3,6 +3,9 @@ import './NewsletterView.css'
 
 import { withNewsletter } from './NewsletterContext'
 
+const downloadURL = item =>
+    `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`
+
 class NewsletterView extends React.Component {
     currentIssue() {
         const { isLoaded, items } = this.props.newsletter
@@ -11,7 +14,6 @@ class NewsletterView extends React.Component {
         }
 
         const issueNo = Number(this.props.match.params.issue)
-        // TODO: needs polyfill for IE
         return items.find(i => i.Issue === issueNo)
     }
 
@@ -24,6 +26,7 @@ class NewsletterView extends React.Component {
         return (
             <div className="Issue-view">
                 <h2><a href={issue.Link} target="_blank" rel="noopener">Phaser World Issue {issue.Issue}</a></h2>
+                <h5 style={{ paddingLeft: '10px' }}>Download as PDF <a href={downloadURL(issue)}>here</a>.</h5>
                 {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
