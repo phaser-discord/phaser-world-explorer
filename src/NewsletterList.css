@@ -1,5 +1,19 @@
-.List-view {
-    font-size: large;
-    padding: 5px 30px;
-    background-color: #dddddd;
+.ListView {
+  background-color: #dddddd;
+  padding: 0px 20px;
+}
+
+.ListView h3 {
+  margin: 0;
+  padding-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.ListView ul > li {
+  padding-bottom: 5px;
 }

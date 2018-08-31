@@ -1,73 +1,63 @@
-import React, {
-  Component
-} from 'react';
-import Media from "react-media";
+import React from 'react'
+import Media from "react-media"
 import { Route, Switch, Redirect } from 'react-router-dom'
-import jsyaml from 'js-yaml';
+import Collapsible from 'react-collapsible'
+
 import NewsletterList from './NewsletterList'
 import NewsletterView from './NewsletterView'
 
-class NewsLetterRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    };
-  }
+import './NewsletterRoute.css'
 
-  componentDidMount() {
-    fetch("https://rawgit.com/phaser-discord/community/master/Newsletter%20TOC.yaml")
-      .then(res => res.text())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: jsyaml.safeLoad(result)
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
+const menuTrigger = (
+  <div>
+    <h3>Newsletter Back Issues</h3>
+  </div>
+)
 
+const SmallScreen = ({ children }) => (
+  <div className="vertPanels">
+    <div className="topPanel">
+      <div>
+        <Collapsible open={false} trigger={menuTrigger}>
+          <NewsletterList />
+        </Collapsible>
+      </div>
+    </div>
+    <div className="bottomPanel">
+      {children}
+    </div>
+  </div>
+)
+
+const LargeScreen = ({ children }) => (
+  <div className="horizPanels">
+    <div className="leftPanel">
+      <div>
+        <NewsletterList showHeader />
+      </div>
+    </div>
+
+    <div className="rightPanel">
+      <div>{children}</div>
+    </div>
+  </div>
+)
+
+class NewsLetterRoute extends React.Component {
   render() {
-    const NewsletterListRoute = () => {
-      return this.state.isLoaded ? <NewsletterList listItems={this.state.items} /> : null
-    }
-    const NewsletterViewRoute = props => {
-      return this.state.isLoaded ? <NewsletterView {...props} issues={this.state.items} /> : null
-    }
-    const NewsletterHomeRoute = () => {
-      return <p>Home view...</p>
-    }
-
-    return (
-      <Media query={{ maxWidth: 599 }}>
-        {screenIsSmall => screenIsSmall
-          // small screen has no redirect
-          ? <div><Switch>
-            <Route exact path="/issues/" render={NewsletterListRoute} />
-            <Route exact path="/issues/home" render={NewsletterHomeRoute} />
-            <Route path="/issues/:issue" render={NewsletterViewRoute} />
-          </Switch></div>
-          // large screen does!
-          : <div><NewsletterListRoute /><Switch>
-            <Route exact path="/issues/home" render={NewsletterHomeRoute} />
-            <Route path="/issues/:issue" render={NewsletterViewRoute} />
-            <Redirect from="/issues" to="/issues/home" />
-          </Switch></div>
-        }
-      </Media>
+    const routes = (
+      <Switch>
+        <Route path="/newsletter/issue/:issue" component={NewsletterView} />
+        <Route exact path="/newsletter" component={NewsletterView} />
+        <Redirect to="/" />
+      </Switch>
     )
+
+    const screenLayout = smallScreen => smallScreen
+      ? <SmallScreen>{routes}</SmallScreen>
+      : <LargeScreen>{routes}</LargeScreen>
+
+    return <Media query={{ maxWidth: 959 }}>{screenLayout}</Media>
   }
 }
 

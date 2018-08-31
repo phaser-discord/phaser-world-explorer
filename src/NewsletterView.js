@@ -1,37 +1,46 @@
-import React, {
-    Component
-} from 'react';
-import './NewsletterView.css';
+import React from 'react'
+import './NewsletterView.css'
 
-class NewsletterView extends Component {
+import { withNewsletter } from './NewsletterContext'
+
+const downloadURL = item =>
+    `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`
+
+class NewsletterView extends React.Component {
     currentIssue() {
-        let current = null
-        this.props.issues.forEach(issue => {
-            if (issue.Issue === parseInt(this.props.match.params.issue, 10)) {
-                current = issue;
-            }
-        });
-        return current;
+        const { isLoaded, items } = this.props.newsletter
+        if (!isLoaded) {
+            return null
+        }
+
+        const issueNo = Number(this.props.match.params.issue)
+        return items.find(i => i.Issue === issueNo)
     }
 
     render() {
+        const issue = this.currentIssue()
+        if (!issue) {
+            return null
+        }
+
         return (
             <div className="Issue-view">
-                <h2><a href={this.currentIssue().Link} target="_blank" rel="noopener">Phaser World Issue {this.currentIssue().Issue}</a></h2>
-                {this.currentIssue().Releases ?
+                <h2><a href={issue.Link} target="_blank" rel="noopener">Phaser World Issue {issue.Issue}</a></h2>
+                <h5 style={{ paddingLeft: '10px' }}>Download as PDF <a href={downloadURL(issue)}>here</a>.</h5>
+                {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
-                        <ul>{this.currentIssue().Releases.map(release => {
+                        <ul>{issue.Releases.map(release => {
                             return <li key={release}>{release}</li>
                         })}
                         </ul>
                     </div>
                     : null
                 }
-                {this.currentIssue().Tutorials ?
+                {issue.Tutorials ?
                     <div>
                         <h3>Tutorials</h3>
-                        <ul>{this.currentIssue().Tutorials.map(tutorial => {
+                        <ul>{issue.Tutorials.map(tutorial => {
                             return <li key={tutorial.name}>
                                 <h4>{tutorial.name}</h4>
                                 <p>{tutorial.desc}</p>
@@ -44,11 +53,11 @@ class NewsletterView extends Component {
                     </div>
                     : null
                 }
-                {this.currentIssue().Updates ?
+                {issue.Updates ?
                     <div>
                         <h3>Updates</h3>
                         This issue contains info/updates on the following Phaser-relared systems/plugins/features/projects:
-                    <ul>{this.currentIssue().Updates.map(update => {
+                    <ul>{issue.Updates.map(update => {
                             return <li key={update}>{update}</li>
                         })}
                         </ul>
@@ -60,4 +69,4 @@ class NewsletterView extends Component {
     }
 }
 
-export default NewsletterView;
+export default withNewsletter(NewsletterView)

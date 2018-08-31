@@ -1,21 +1,39 @@
-import React, {
-    Component
-} from 'react';
-import './NewsletterList.css';
-import NewsletterListItem from './NewsletterListItem'
+import React from 'react'
 
-class NewsletterList extends Component {
-    render() {
-        return (
-            <div className="List-view">
-                <ul>
-                    {this.props.listItems.map(item => {
-                        return <NewsletterListItem key={item.Issue || Math.random()} issue={item.Issue || null} />
-                    })}
-                </ul>
-            </div>
-        );
+import './NewsletterList.css'
+
+import NewsletterListItem from './NewsletterListItem'
+import { withNewsletter } from './NewsletterContext'
+
+class NewsletterList extends React.Component {
+  render() {
+    const { showHeader } = this.props
+    const { isLoaded, items } = this.props.newsletter
+    if (!isLoaded) {
+      return null
     }
+
+    const header = showHeader ? (
+      <div>
+        <h3>Newsletter Back Issues</h3>
+      </div>
+    ) : null
+
+    return (
+      <div className="ListView">
+        {header}
+        <div>
+          <ul>
+            {items.map(item =>
+              <li>
+                <NewsletterListItem key={item.Issue} item={item} />
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default NewsletterList;
+export default withNewsletter(NewsletterList)

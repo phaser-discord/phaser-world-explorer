@@ -1,19 +1,24 @@
-import React, {
-  Component
-} from 'react';
-import { Route, Redirect } from 'react-router-dom'
+import React from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
+
 import './App.css';
 import NewsletterRoute from './NewsletterRoute'
+import { NewsletterProvider } from './NewsletterContext'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Explore past issues of Phaser World</h1>
-        </header>
-        <Route exact path="/" render={() => <Redirect to="/issues" />} />
-        <Route path="/issues" component={NewsletterRoute} />
+        <NewsletterProvider src="https://rawgit.com/phaser-discord/community/master/Newsletter%20TOC.yaml">
+          <header className="App-header">
+            <h1 className="App-title">Explore Phaser World</h1>
+          </header>
+          <Switch>
+            <Route path="/newsletter" component={NewsletterRoute} />
+            <Route exact path="/" component={NewsletterRoute} />
+            <Redirect to="/" />
+          </Switch>
+        </NewsletterProvider>
       </div>
     );
   }
