@@ -4,6 +4,7 @@ import './NewsletterList.css'
 
 import NewsletterListItem from './NewsletterListItem'
 import { withNewsletter } from './NewsletterContext'
+import Search from './Search'
 
 class NewsletterList extends React.Component {
   render() {
@@ -30,6 +31,9 @@ class NewsletterList extends React.Component {
               </li>
             )}
           </ul>
+        </div>
+        <div>
+          <Search />
         </div>
       </div>
     );
