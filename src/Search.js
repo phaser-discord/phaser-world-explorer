@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
+import './Search.css'
 
 class Search extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="search">
         <input type="text" ref={this.searchField} />
         <button type="submit" value="Go!">Go!</button>
       </form>
