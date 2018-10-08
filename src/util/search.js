@@ -1,7 +1,5 @@
 import fuzzy from 'fuzzy'
 
-import { issues } from './stub'
-
 /**
  * search returns items out of the Tutorials and Update lists of a newsletter
  * that match the search string.  This checks the search string in a fuzzy
@@ -37,12 +35,38 @@ const search = (searchString, data, tutVersion) =>
       )
 
       return {
-        [cur.Issue]: { tutorials: tutorialMatches, updates: updateMatches },
+        [cur.Issue]: { ref: cur, tutorials: tutorialMatches, updates: updateMatches },
         ...acc,
       }
     },
-    {}
+    {},
   )
 
+export const simpleSearch = (searchString, data, tutVersion) => {
+  const ss = searchString.toLowerCase()
+
+  return data.reduce(
+    (acc, cur) => {
+      const limitVersion = !!tutVersion
+      const tutorials = cur.Tutorials || []
+      const updates = cur.Updates || []
+
+      const tutorialMatches = tutorials.filter(t => {
+        const versionMatch = (!limitVersion || tutVersion === t.version)
+        const nameMatch = t.name.toLowerCase().indexOf(ss) !== -1
+        const descMatch = t.desc.toLowerCase().indexOf(ss) !== -1
+        return versionMatch && (nameMatch || descMatch)
+      })
+
+      const updateMatches = updates.filter(u => u.toLowerCase().indexOf(ss) !== -1)
+
+      return {
+        [cur.Issue]: { ref: cur, tutorials: tutorialMatches, updates: updateMatches },
+        ...acc,
+      }
+    },
+    {},
+  )
+}
 
 export default search

@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.css';
 import NewsletterRoute from './NewsletterRoute'
 import { NewsletterProvider } from './NewsletterContext'
+import SearchResults from './SearchResults';
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
           </header>
           <Switch>
             <Route path="/newsletter" component={NewsletterRoute} />
+            <Route path="/search" component={SearchResults} />
             <Route exact path="/" component={NewsletterRoute} />
             <Redirect to="/" />
           </Switch>

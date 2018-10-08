@@ -1,6 +1,6 @@
 import React from 'react'
 import Media from "react-media"
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 
 import NewsletterList from './NewsletterList'
@@ -10,7 +10,11 @@ import './NewsletterRoute.css'
 
 const menuTrigger = (
   <div>
-    <h3>Newsletter Back Issues</h3>
+    <h3>
+      <span className="menu-icon material-icons">menu</span>
+      <span>Menu</span>
+    </h3>
+
   </div>
 )
 
@@ -19,7 +23,7 @@ const SmallScreen = ({ children }) => (
     <div className="topPanel">
       <div>
         <Collapsible open={false} trigger={menuTrigger}>
-          <NewsletterList />
+          <NewsletterList showHeader />
         </Collapsible>
       </div>
     </div>
@@ -48,8 +52,6 @@ class NewsLetterRoute extends React.Component {
     const routes = (
       <Switch>
         <Route path="/newsletter/issue/:issue" component={NewsletterView} />
-        <Route exact path="/newsletter" component={NewsletterView} />
-        <Redirect to="/" />
       </Switch>
     )
 
@@ -61,4 +63,4 @@ class NewsLetterRoute extends React.Component {
   }
 }
 
-export default NewsLetterRoute;
+export default NewsLetterRoute
