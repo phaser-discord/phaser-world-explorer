@@ -1,11 +1,12 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import './App.css'
-import { NewsletterProvider } from './NewsletterContext'
-import NewsletterRoute from './NewsletterRoute'
-import SearchResults from './SearchResults'
 import Layout from './Layout'
+import NewsletterRoute from './NewsletterRoute'
+import SearchResults from './components/SearchResults'
+import { NewsletterProvider } from './util/NewsletterContext'
+
+import './App.css'
 
 const App = () => (
   <div className="App">

@@ -1,9 +1,8 @@
 import React from 'react'
 import qs from 'query-string'
 
-import { withNewsletter } from './NewsletterContext'
-
-import { simpleSearch as search } from './util/search'
+import { withNewsletter } from '../util/NewsletterContext'
+import { simpleSearch as search } from '../util/search'
 
 class ExpandedSearchResults extends React.Component {
   results(query) {

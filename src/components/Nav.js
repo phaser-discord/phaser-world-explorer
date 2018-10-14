@@ -2,8 +2,8 @@ import React from 'react'
 
 import Search from './Search'
 
-import NewsletterListItem from '../NewsletterListItem'
-import { withNewsletter } from '../NewsletterContext'
+import NewsletterListItem from '../components/NewsletterListItem'
+import { withNewsletter } from '../util/NewsletterContext'
 
 const mkLink = itm =>
   <li key={`${itm.Issue}-li`}>
