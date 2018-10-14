@@ -1,20 +1,23 @@
 import React from 'react'
 import qs from 'query-string'
-
 import { Redirect } from 'react-router-dom'
-import './NewsletterList.css'
 
-import NewsletterListItem from './NewsletterListItem'
-import { withNewsletter } from './NewsletterContext'
 
-class NewsletterList extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = { nextLocation: null }
     this.contentSearchRef = React.createRef()
 
+    this.handleSubmit = this.handleSearch.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.renderRedirect = this.renderRedirect.bind(this)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    this.handleSearch()
   }
 
   handleSearch() {
@@ -40,43 +43,20 @@ class NewsletterList extends React.Component {
   }
 
   render() {
-    const { showHeader } = this.props
-    const { isLoaded, items } = this.props.newsletter
-    if (!isLoaded) {
-      return null
-    }
-
-    const header = showHeader ? (
-      <div>
-        <h3>Newsletter Back Issues</h3>
-      </div>
-    ) : null
-
     return (
-      <div className="ListView">
+      <div>
         {this.renderRedirect()}
-        {header}
-        <div>
-          <ul>
-            {items.map(item =>
-              <li key={`${item.Issue}-li`}>
-                <NewsletterListItem key={item.Issue} item={item} />
-              </li>
-            )}
-          </ul>
-        </div>
-        <div>
-          <h3>Search</h3>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <input ref={this.contentSearchRef} type="text"></input>
           </div>
           <div>
             <input type="button" value="Search" onClick={this.handleSearch}></input>
           </div>
-        </div>
+        </form>
       </div>
-    );
+    )
   }
 }
 
-export default withNewsletter(NewsletterList)
+export default Search
