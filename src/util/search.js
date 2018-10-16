@@ -15,6 +15,7 @@ import fuzzy from 'fuzzy'
  *   A mapping of the issue number to an object containing the tutorials and
  *   update summaries that matched.
  */
+
 const search = (searchString, data, tutVersion) =>
   data.reduce(
     (acc, cur) => {
@@ -26,7 +27,7 @@ const search = (searchString, data, tutVersion) =>
         (!limitVersion || tutVersion === t.version) &&
         fuzzy.filter(
           searchString,
-          [t.name, t.desc],
+          [t.name, t.desc, ...t.tags],
         ).map(e => e.string).length !== 0
       )
 
@@ -55,7 +56,8 @@ export const simpleSearch = (searchString, data, tutVersion) => {
         const versionMatch = (!limitVersion || tutVersion === t.version)
         const nameMatch = t.name.toLowerCase().indexOf(ss) !== -1
         const descMatch = t.desc.toLowerCase().indexOf(ss) !== -1
-        return versionMatch && (nameMatch || descMatch)
+        const tagMatch = (t.tags || []).filter(t => t.toLowerCase().indexOf(ss) !== -1).length !== 0
+        return versionMatch && (nameMatch || descMatch || tagMatch)
       })
 
       const updateMatches = updates.filter(u => u.toLowerCase().indexOf(ss) !== -1)
