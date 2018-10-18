@@ -1,27 +1,26 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import './App.css';
+import Layout from './Layout'
 import NewsletterRoute from './NewsletterRoute'
-import { NewsletterProvider } from './NewsletterContext'
+import SearchResults from './components/SearchResults'
+import { NewsletterProvider } from './util/NewsletterContext'
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <NewsletterProvider src="https://rawgit.com/phaser-discord/community/master/Newsletter%20TOC.yaml">
-          <header className="App-header">
-            <h1 className="App-title">Explore Phaser World</h1>
-          </header>
-          <Switch>
-            <Route path="/newsletter" component={NewsletterRoute} />
-            <Route exact path="/" component={NewsletterRoute} />
-            <Redirect to="/" />
-          </Switch>
-        </NewsletterProvider>
-      </div>
-    );
-  }
-}
+import './App.css'
+
+const App = () => (
+  <div className="App">
+    <NewsletterProvider src="https://rawgit.com/phaser-discord/community/master/Newsletter%20TOC.yaml">
+      <Layout>
+        <Switch>
+          <Route path="/newsletter" component={NewsletterRoute} />
+          <Route path="/search" component={SearchResults} />
+          <Route exact path="/" component={NewsletterRoute} />
+          <Redirect to="/" />
+        </Switch>
+      </Layout>
+    </NewsletterProvider>
+  </div>
+)
 
 export default App;

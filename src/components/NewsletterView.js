@@ -1,7 +1,9 @@
 import React from 'react'
-import './NewsletterView.css'
 
-import { withNewsletter } from './NewsletterContext'
+
+import { withNewsletter } from '../util/NewsletterContext'
+
+import './NewsletterView.css'
 
 const downloadURL = item =>
     `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`
