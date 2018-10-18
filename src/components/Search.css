@@ -1,0 +1,27 @@
+form.search {
+  display: flex;
+}
+
+form.search .input {
+  flex-grow: 1;
+}
+
+form.search input {
+  background: white;
+  border-radius: 1px;
+  border: 2px solid;
+  font-size: 16px;
+}
+
+form.search input[type="text"] {
+  padding: 2px;
+}
+
+form.search input[type="button"]:active {
+  background: #EEE;
+}
+
+form.search input:focus {
+  border: 2px solid #666;
+  outline: none;
+}

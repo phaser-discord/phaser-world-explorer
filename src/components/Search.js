@@ -1,7 +1,7 @@
 import React from 'react'
 import qs from 'query-string'
 import { Redirect } from 'react-router-dom'
-
+import './Search.css'
 
 class Search extends React.Component {
   constructor(props) {
@@ -46,11 +46,11 @@ class Search extends React.Component {
     return (
       <div>
         {this.renderRedirect()}
-        <form onSubmit={this.handleSubmit}>
-          <div>
+        <form onSubmit={this.handleSubmit} className="search">
+          <div className="input">
             <input ref={this.contentSearchRef} type="text"></input>
           </div>
-          <div>
+          <div className="button">
             <input type="button" value="Search" onClick={this.handleSearch}></input>
           </div>
         </form>
