@@ -10,7 +10,7 @@ import './App.css'
 
 const App = () => (
   <div className="App">
-    <NewsletterProvider src="https://rawgit.com/phaser-discord/community/master/Newsletter%20TOC.yaml">
+    <NewsletterProvider src="https://raw.githubusercontent.com/phaser-discord/community/master/Newsletter%20TOC.yaml">
       <Layout>
         <Switch>
           <Route path="/newsletter" component={NewsletterRoute} />
