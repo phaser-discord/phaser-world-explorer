@@ -27,7 +27,7 @@ const search = (searchString, data, tutVersion) =>
         (!limitVersion || tutVersion === t.version) &&
         fuzzy.filter(
           searchString,
-          [t.name, t.desc, ...t.tags],
+          [t.name, t.desc, ...(t.tags || [])],
         ).map(e => e.string).length !== 0
       )
 
