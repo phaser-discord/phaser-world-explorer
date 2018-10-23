@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "cp build/index.html build/200.html && surge -p build -d phaser-world-explorer.surge.sh"
+    "predeploy": "yarn run build",
+    "deploy": "surge -p build -d phaser-world-explorer.surge.sh"
   },
   "browserslist": [
     ">0.2%",
