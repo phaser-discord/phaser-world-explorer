@@ -1,5 +1,6 @@
 # Phaser World Explorer
 [![Build Status](https://travis-ci.org/phaser-discord/phaser-world-explorer.svg?branch=master)](https://travis-ci.org/phaser-discord/phaser-world-explorer)
+
 Phaser World Explorer is a React app we created to let you look through the contents of the Phaser World newsletters more easily. It shows a list of all newsletters (that we have gathered data for), and has a structured overview of the contents of the newsletters. You are also able to search through the newsletters for a specific word or phrase.
 
 ## Building
