@@ -17,18 +17,18 @@ const Nav = (props) => {
     : <li>Loading...</li>
 
   return (
-    <div>
+    <nav className="nav">
+      <div>
+        <h3>Search</h3>
+        <Search />
+      </div>
       <div>
         <h3>Newsletters</h3>
         <ul>
           {newsletterLinks}
         </ul>
       </div>
-      <div>
-        <h3>Search</h3>
-        <Search />
-      </div>
-    </div>
+    </nav>
   )
 }
 
