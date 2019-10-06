@@ -4,6 +4,7 @@ form.search {
 
 form.search .input {
   flex-grow: 1;
+  margin-right: 5px;
 }
 
 form.search input {
@@ -11,6 +12,8 @@ form.search input {
   border-radius: 1px;
   border: 2px solid;
   font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 form.search input[type="text"] {
@@ -24,4 +27,8 @@ form.search input[type="button"]:active {
 form.search input:focus {
   border: 2px solid #666;
   outline: none;
+}
+
+.topPanel .search {
+  margin-left:20px;
 }

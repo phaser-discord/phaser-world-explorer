@@ -54,7 +54,7 @@ class ExpandedSearchResults extends React.Component {
 
     return (
       <div>
-        <h3>SearchResults: {searchArgs.q}</h3>
+        <h3>Search Results: {searchArgs.q}</h3>
         {this.results(searchArgs.q)}
       </div>
     )
