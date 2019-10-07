@@ -11,13 +11,13 @@ form.search input, form.search button {
   background: white;
   border-radius: 1px;
   border: 2px solid;
-  font-size: 24px;
+  font-size: 17px;
   box-sizing: border-box;
   width: 100%;
 }
 
 form.search input[type="text"] {
-  padding: 2px;
+  padding: 6px;
 }
 
 form.search button {
