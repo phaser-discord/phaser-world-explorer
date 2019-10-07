@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Collapsible from 'react-collapsible'
 import Media from 'react-media'
 
@@ -15,20 +15,23 @@ const menuTrigger = (
   </div>
 )
 
-const SmallScreen = ({ children }) => (
+const SmallScreen = ({ children }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
   <div className="vertPanels">
     <div className="topPanel">
       <div>
-        <Collapsible open={false} trigger={menuTrigger}>
-          <Nav />
+        <Collapsible open={open} trigger={menuTrigger} onOpening={() => setOpen(true)} onClosing={() => setOpen(false)}>
+            <Nav onClickIssue={() => setOpen(false)} onSearch={() => setOpen(false)}/>
         </Collapsible>
       </div>
     </div>
     <div className="bottomPanel">
       {children}
     </div>
-  </div>
-)
+  </div>)
+}
 
 const LargeScreen = ({ children }) => (
   <div className="horizPanels">
