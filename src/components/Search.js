@@ -51,7 +51,9 @@ class Search extends React.Component {
             <input ref={this.contentSearchRef} type="text"></input>
           </div>
           <div className="button">
-            <input type="button" value="Search" onClick={this.handleSearch}></input>
+            <button type="button" onClick={this.handleSearch}>
+              <i className="material-icons">search</i>
+            </button>
           </div>
         </form>
       </div>

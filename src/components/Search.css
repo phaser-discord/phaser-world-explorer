@@ -7,11 +7,11 @@ form.search .input {
   margin-right: 5px;
 }
 
-form.search input {
+form.search input, form.search button {
   background: white;
   border-radius: 1px;
   border: 2px solid;
-  font-size: 16px;
+  font-size: 24px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -20,11 +20,20 @@ form.search input[type="text"] {
   padding: 2px;
 }
 
-form.search input[type="button"]:active {
+form.search button {
+  padding: 1.5px 10px;
+}
+
+form.search button .material-icons {
+  margin-top: 6.4px;
+  line-height: 0.5;
+}
+
+form.search button:active {
   background: #EEE;
 }
 
-form.search input:focus {
+form.search input:focus, form.search button:focus {
   border: 2px solid #666;
   outline: none;
 }
