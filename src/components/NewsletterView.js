@@ -47,8 +47,8 @@ class NewsletterView extends React.Component {
                                 <h4>{tutorial.name}</h4>
                                 <p>{tutorial.desc}</p>
                                 <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
-                                <p><a href={tutorial.link} target="_blank" rel="noopener noreferrer">Link</a></p>
-                                {tutorial.directlink ? <p><a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Direct Link</a></p> : null}
+                                <p><a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a></p>
+                                {tutorial.directlink ? <p><a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a></p> : null}
                             </li>
                         })}
                         </ul>
