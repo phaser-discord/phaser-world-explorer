@@ -50,7 +50,7 @@ const Layout = (props) => {
     : <LargeScreen>{props.children}</LargeScreen>
 
   return (
-    <div>
+    <div className="wrapper">
       <header className="header">
         <h1 className="title">Explore Phaser World</h1>
       </header>
