@@ -7,10 +7,10 @@ import './Layout.css'
 import Nav from './components/Nav'
 
 const menuTrigger = (
-  <div>
+  <div className="menu-trigger">
+    <span className="menu-icon material-icons">menu</span>
     <h3>
-      <span className="menu-icon material-icons">menu</span>
-      <span>Menu</span>
+      Menu
     </h3>
   </div>
 )

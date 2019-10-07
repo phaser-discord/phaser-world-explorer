@@ -30,10 +30,21 @@
   padding: 0 10px;
 }
 
-.topPanel h3 {
-  margin: 0;
+.topPanel .menu-trigger {
   padding-top: 20px;
   padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.topPanel .menu-trigger .material-icons {
+  margin-right: 20px;
+}
+
+.topPanel h3 {
+  margin: 0;
+  margin-bottom: -2px;
+  font-size: 1.3em;
   cursor: pointer;
 }
 .topPanel .nav {

@@ -52,7 +52,7 @@ class Search extends React.Component {
           </div>
           <div className="button">
             <button type="button" onClick={this.handleSearch}>
-              <i className="material-icons">search</i>
+              <span className="material-icons">search</span>
             </button>
           </div>
         </form>
