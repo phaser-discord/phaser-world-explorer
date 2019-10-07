@@ -20,11 +20,11 @@ const Nav = (props) => {
     <nav className="nav">
       <div>
         <h3>Search</h3>
-        <Search />
+        <Search onSearch={props.onSearch} />
       </div>
       <div>
         <h3>Newsletters</h3>
-        <ul>
+        <ul onClick={props.onClickIssue}>
           {newsletterLinks}
         </ul>
       </div>

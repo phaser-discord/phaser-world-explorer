@@ -34,6 +34,10 @@ class Search extends React.Component {
     }
 
     this.setState({ nextLocation })
+    
+    if(this.props.onSearch){
+      this.props.onSearch(cur.value)
+    }
   }
 
   renderRedirect() {
