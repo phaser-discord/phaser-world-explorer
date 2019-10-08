@@ -4,6 +4,25 @@ import qs from 'query-string'
 import { withNewsletter } from '../util/NewsletterContext'
 import { simpleSearch as search } from '../util/search'
 
+const Tutorial = ({ tutorial, issueNumber }) => {
+  return (
+    <li>
+      <a href={tutorial.directlink || tutorial.link}>{tutorial.name}</a>{' '}
+      (phaser {tutorial.version || 3}, Issue {issueNumber}): {tutorial.desc}
+    </li>
+  );
+}
+
+const Update = ({ update, updateLink, issueNumber}) => {
+  return (
+    <li>
+      <a href={updateLink}>
+        Issue {issueNumber}
+      </a>: {update}
+    </li>
+  );
+}
+
 class ExpandedSearchResults extends React.Component {
   results(query) {
     if (!this.props.newsletter.isLoaded) {
@@ -17,18 +36,11 @@ class ExpandedSearchResults extends React.Component {
 
     Object.keys(r).map(iss => {
       tutorials.push(...r[iss].tutorials.map((t, idx) => (
-        <li key={`tut-${iss}-${idx}`}>
-          <a href={t.directlink || t.link}>{t.name}</a>{' '}
-          (phaser {t.version}, Issue {iss}): {t.desc}
-        </li>
+        <Tutorial key={`tut-${iss}-${idx}`} tutorial={t} issueNumber={iss}/>
       )))
 
       updates.push(...r[iss].updates.map((u, idx) => (
-        <li key={`upd-${iss}-${idx}`}>
-          <a href={r[iss].ref.Link}>
-            Issue {iss}
-          </a>: {u}
-        </li>
+        <Update key={`upd-${iss}-${idx}`} update={u} updateLink={r[iss].ref.Link} issueNumber={iss} />
       )))
     })
 
