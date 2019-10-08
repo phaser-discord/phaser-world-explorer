@@ -44,14 +44,19 @@ class NewsletterView extends React.Component {
 
         return (
             <div className="Issue-view">
-                <h2><a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a></h2>
-                <h5 style={{ paddingLeft: '10px' }}><a href={downloadURL(issue)}>Download as PDF</a></h5>
+                <h2>
+                    <a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a>
+                </h2>
+                <h5 style={{ paddingLeft: '10px' }}>
+                    <a href={downloadURL(issue)}>Download as PDF</a>
+                </h5>
                 {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
-                        <ul>{issue.Releases.map(release => {
-                            return <li key={release}>{release}</li>
-                        })}
+                        <ul>
+                            {issue.Releases.map(release => {
+                                return <li key={release}>{release}</li>
+                            })}
                         </ul>
                     </div>
                     : null
@@ -59,9 +64,10 @@ class NewsletterView extends React.Component {
                 {issue.Tutorials ?
                     <div>
                         <h3>Tutorials</h3>
-                        <ul>{issue.Tutorials.map(tutorial => {
-                            return <Tutorial tutorial={tutorial} key={tutorial.name} />
-                        })}
+                        <ul>
+                            {issue.Tutorials.map(tutorial => {
+                                return <Tutorial tutorial={tutorial} key={tutorial.name} />
+                            })}
                         </ul>
                     </div>
                     : null
@@ -70,9 +76,10 @@ class NewsletterView extends React.Component {
                     <div>
                         <h3>Updates</h3>
                         This issue contains info/updates on the following Phaser-related systems/plugins/features/projects:
-                    <ul>{issue.Updates.map(update => {
-                            return <li key={update}>{update}</li>
-                        })}
+                        <ul>
+                            {issue.Updates.map(update => {
+                                return <li key={update}>{update}</li>
+                            })}
                         </ul>
                     </div>
                     : null
