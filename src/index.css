@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 html, body, #root {
-  min-height: 100%;
+  height: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
