@@ -7,6 +7,24 @@ import './NewsletterView.css'
 const downloadURL = item =>
     `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`
 
+const Tutorial = ({ tutorial }) => {
+    return (
+        <li>
+            <h4>{tutorial.name}</h4>
+            <p>{tutorial.desc}</p>
+            <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
+            <p>
+                <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>
+            </p>
+            {tutorial.directlink ?
+                <p>
+                    <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
+                </p>
+            : null}
+        </li>
+    );
+}
+
 class NewsletterView extends React.Component {
     currentIssue() {
         const { isLoaded, items } = this.props.newsletter
@@ -42,13 +60,7 @@ class NewsletterView extends React.Component {
                     <div>
                         <h3>Tutorials</h3>
                         <ul>{issue.Tutorials.map(tutorial => {
-                            return <li key={tutorial.name}>
-                                <h4>{tutorial.name}</h4>
-                                <p>{tutorial.desc}</p>
-                                <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
-                                <p><a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a></p>
-                                {tutorial.directlink ? <p><a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a></p> : null}
-                            </li>
+                            return <Tutorial tutorial={tutorial} key={tutorial.name} />
                         })}
                         </ul>
                     </div>
@@ -57,7 +69,7 @@ class NewsletterView extends React.Component {
                 {issue.Updates ?
                     <div>
                         <h3>Updates</h3>
-                        This issue contains info/updates on the following Phaser-relared systems/plugins/features/projects:
+                        This issue contains info/updates on the following Phaser-related systems/plugins/features/projects:
                     <ul>{issue.Updates.map(update => {
                             return <li key={update}>{update}</li>
                         })}
