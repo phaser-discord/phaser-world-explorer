@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import { withNewsletter } from '../util/NewsletterContext'
 
 import './NewsletterView.css'
