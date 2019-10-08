@@ -58,3 +58,11 @@
   margin-bottom: 1em;
   margin-top: 0.5em
 }
+
+.rightPanel li, .bottomPanel li {
+  margin: 0.5em 0;
+}
+
+.leftPanel li, .topPanel li {
+  margin: 0.15em 0;
+}
