@@ -13,3 +13,7 @@
 .title {
   font-size: 1.5em;
 }
+
+.title a, .title a:visited {
+  color: white;
+}

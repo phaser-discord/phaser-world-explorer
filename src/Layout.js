@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Collapsible from 'react-collapsible'
 import Media from 'react-media'
+import { Link } from 'react-router-dom'
 
 import './Layout.css'
 
@@ -55,7 +56,7 @@ const Layout = (props) => {
   return (
     <div className="wrapper">
       <header className="header">
-        <h1 className="title">Explore Phaser World</h1>
+        <h1 className="title"><Link to="/">Explore Phaser World</Link></h1>
       </header>
 
       <Media query={{ maxWidth: 959 }}>
