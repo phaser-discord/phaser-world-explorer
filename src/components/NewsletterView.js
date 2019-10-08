@@ -28,7 +28,7 @@ class NewsletterView extends React.Component {
         return (
             <div className="Issue-view">
                 <h2><a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a></h2>
-                <h5 style={{ paddingLeft: '10px' }}>Download as PDF <a href={downloadURL(issue)}>here</a>.</h5>
+                <h5 style={{ paddingLeft: '10px' }}><a href={downloadURL(issue)}>Download as PDF</a></h5>
                 {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
