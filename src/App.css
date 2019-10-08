@@ -22,3 +22,10 @@ a {
 a:visited {
   color: #428bca;
 }
+
+@media (prefers-color-scheme: dark) {
+  .App {
+    background:#333333;
+    color: white;
+  }
+}
