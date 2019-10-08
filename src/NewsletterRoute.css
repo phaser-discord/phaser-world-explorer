@@ -66,3 +66,9 @@
 .leftPanel li, .topPanel li {
   margin: 0.15em 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  .topPanel {
+    background-color: #555;
+  }
+}
