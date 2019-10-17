@@ -9,7 +9,7 @@ const downloadURL = item =>
 
 const Tutorial = ({ tutorial }) => {
     return (
-        <li className="tutorial">
+        <li className="tutorial" aria-label="Tutorial list item">
             <div className="card-header">
                 <h4 className="card-title">{tutorial.name}</h4>
                 <div className="card-badge" aria-label="Phaser version for this tutorial">
@@ -17,7 +17,7 @@ const Tutorial = ({ tutorial }) => {
                 </div>
             </div>
             <div className="card-content">
-                <p>{tutorial.desc}</p>
+                <p aria-label="Tutorial description">{tutorial.desc}</p>
             </div>
             <div className="card-footer" aria-label="Tags">
                 {tutorial.tags.map(tag => {
@@ -33,6 +33,11 @@ const Tutorial = ({ tutorial }) => {
 }
 
 class NewsletterView extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.issueRef = React.createRef()
+    }
     currentIssue() {
         const { isLoaded, items } = this.props.newsletter
         if (!isLoaded) {
@@ -48,11 +53,12 @@ class NewsletterView extends React.Component {
         if (!issue) {
             return null
         }
+        this.props.history.listen(stuff=>this.issueRef.current.focus())
 
         return (
             <div className="Issue-view">
                 <h2>
-                    <a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a>
+                    <a href={issue.Link} target="_blank" rel="noopener noreferrer" ref={this.issueRef}>Phaser World Issue {issue.Issue}</a>
                 </h2>
                 <a href={downloadURL(issue)} className="downloadLink">
                     <span className="material-icons" aria-hidden>
