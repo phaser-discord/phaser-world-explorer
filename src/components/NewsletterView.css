@@ -11,6 +11,11 @@
   padding-left: 10px;
 }
 
+.Issue-view .downloadLink .material-icons {
+  font-size: 17px;
+  margin-right: 5px;
+}
+
 .Issue-view .tutorials {
   padding: 0;
 }

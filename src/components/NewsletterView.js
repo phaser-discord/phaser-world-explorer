@@ -45,7 +45,12 @@ class NewsletterView extends React.Component {
                 <h2>
                     <a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a>
                 </h2>
-                <a href={downloadURL(issue)} className="downloadLink">Download as PDF</a>
+                <a href={downloadURL(issue)} className="downloadLink">
+                    <span className="material-icons" aria-hidden>
+                    cloud_download
+                    </span>
+                    Download as PDF
+                </a>
                 {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
