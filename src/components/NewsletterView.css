@@ -80,3 +80,9 @@
     margin: 0;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .Issue-view .tutorial {
+    background: #444;
+  }
+}
