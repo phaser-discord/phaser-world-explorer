@@ -12,12 +12,17 @@ const Tutorial = ({ tutorial }) => {
         <li className="tutorial">
             <div className="card-header">
                 <h4 className="card-title">{tutorial.name}</h4>
-                <div className="version-badge" aria-label={'This tutorial is for Phaser' + tutorial.version === "v2" ? '2/CE' : '3'}>
+                <div className="card-badge" aria-label="Phaser version for this tutorial">
                     Phaser {tutorial.version === "v2" ? '2/CE' : '3'}
                 </div>
             </div>
             <div className="card-content">
                 <p>{tutorial.desc}</p>
+            </div>
+            <div className="card-footer" aria-label="Tags">
+                {tutorial.tags.map(tag => {
+                    return <div className="card-badge" key={tag}>{tag}</div>
+                })}
             </div>
             <div className="card-links">
                 <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>

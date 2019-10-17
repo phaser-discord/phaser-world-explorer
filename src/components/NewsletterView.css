@@ -40,11 +40,20 @@
   font-size: 19px;
 }
 
-.Issue-view .tutorial .version-badge {
+.Issue-view .tutorial .card-badge {
   background: #ccc;
   border-radius: 25px;
   font-size: 15px;
   padding: 7px 10px;
+}
+
+.Issue-view .tutorial .card-footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Issue-view .tutorial .card-footer .card-badge {
+  margin: 5px;
 }
 
 .Issue-view .tutorial .card-links {
@@ -98,7 +107,7 @@
   .Issue-view .tutorial {
     background: #444;
   }
-  .Issue-view .tutorial .version-badge {
+  .Issue-view .tutorial .card-badge {
     background: #666;
   }
 }
