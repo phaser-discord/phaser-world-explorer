@@ -9,18 +9,16 @@ const downloadURL = item =>
 
 const Tutorial = ({ tutorial }) => {
     return (
-        <li>
-            <h4>{tutorial.name}</h4>
-            <p>{tutorial.desc}</p>
-            <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
-            <p>
+        <li className="tutorial">
+            <h4 className="title">{tutorial.name}</h4>
+            <div className="content">
+                <p>{tutorial.desc}</p>
+                <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
+            </div>
+            <div className="links">
                 <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>
-            </p>
-            {tutorial.directlink ?
-                <p>
-                    <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
-                </p>
-            : null}
+                <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
+            </div>
         </li>
     );
 }
@@ -47,9 +45,7 @@ class NewsletterView extends React.Component {
                 <h2>
                     <a href={issue.Link} target="_blank" rel="noopener noreferrer">Phaser World Issue {issue.Issue}</a>
                 </h2>
-                <h5 style={{ paddingLeft: '10px' }}>
-                    <a href={downloadURL(issue)}>Download as PDF</a>
-                </h5>
+                <a href={downloadURL(issue)} className="downloadLink">Download as PDF</a>
                 {issue.Releases ?
                     <div>
                         <h3>Releases</h3>
@@ -64,7 +60,7 @@ class NewsletterView extends React.Component {
                 {issue.Tutorials ?
                     <div>
                         <h3>Tutorials</h3>
-                        <ul>
+                        <ul className="tutorials">
                             {issue.Tutorials.map(tutorial => {
                                 return <Tutorial tutorial={tutorial} key={tutorial.name} />
                             })}

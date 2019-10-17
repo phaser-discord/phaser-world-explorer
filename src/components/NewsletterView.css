@@ -1,4 +1,74 @@
 .Issue-view {
-    font-size: large;
-    padding: 0 30px;
+  font-size: large;
+  padding: 0 30px;
+}
+
+.Issue-view .downloadLink {
+  display: block;
+  font-size: 0.83em;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.Issue-view .tutorials {
+  padding: 0;
+}
+
+.Issue-view .tutorial {
+  list-style: none;
+  background: #eee;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+
+.Issue-view .tutorial .title {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 19px;
+}
+
+.Issue-view .tutorial .links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+}
+
+.Issue-view .tutorial .links a {
+  margin: 10px 0;
+}
+
+@media (min-width: 500px) {
+  .Issue-view .tutorial .links {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
+}
+
+@media (min-width: 800px) {
+  .Issue-view .tutorial {
+    display: grid;
+    grid-template-areas: "title title" "content links";
+    grid-template-columns: auto 150px;
+  }
+  .Issue-view .tutorial .title {
+    grid-area: title;
+  }
+  .Issue-view .tutorial .content {
+    grid-area: content;
+  }
+  .Issue-view .tutorial .links {
+    grid-area: links;
+    justify-content:flex-start;
+    margin-left: 15px;
+    padding: 0 15px;
+  }
+  .Issue-view .tutorial .links a {
+    margin: 0;
+  }
+}
