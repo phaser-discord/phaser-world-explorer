@@ -82,7 +82,7 @@
 @media (min-width: 800px) {
   .Issue-view .tutorial {
     display: grid;
-    grid-template-areas: "header links" "content links";
+    grid-template-areas: "header links" "content links" "footer links";
     grid-template-columns: auto 150px;
   }
   .Issue-view .tutorial .card-header {
@@ -90,6 +90,9 @@
   }
   .Issue-view .tutorial .card-content {
     grid-area: content;
+  }
+  .Issue-view .tutorial .card-footer {
+    grid-area: footer;
   }
   .Issue-view .tutorial .card-links {
     grid-area: links;
