@@ -10,12 +10,16 @@ const downloadURL = item =>
 const Tutorial = ({ tutorial }) => {
     return (
         <li className="tutorial">
-            <h4 className="title">{tutorial.name}</h4>
-            <div className="content">
-                <p>{tutorial.desc}</p>
-                <p>For Phaser {tutorial.version === "v2" ? '2/CE' : '3'}</p>
+            <div className="card-header">
+                <h4 className="card-title">{tutorial.name}</h4>
+                <div className="version-badge" aria-label={'This tutorial is for Phaser' + tutorial.version === "v2" ? '2/CE' : '3'}>
+                    Phaser {tutorial.version === "v2" ? '2/CE' : '3'}
+                </div>
             </div>
-            <div className="links">
+            <div className="card-content">
+                <p>{tutorial.desc}</p>
+            </div>
+            <div className="card-links">
                 <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>
                 <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
             </div>

@@ -28,13 +28,26 @@
   margin: 15px 0;
 }
 
-.Issue-view .tutorial .title {
+.Issue-view .tutorial .card-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.Issue-view .tutorial .card-title {
   margin-top: 0;
   margin-bottom: 0.5em;
   font-size: 19px;
 }
 
-.Issue-view .tutorial .links {
+.Issue-view .tutorial .version-badge {
+  background: #ccc;
+  border-radius: 25px;
+  font-size: 15px;
+  padding: 7px 10px;
+}
+
+.Issue-view .tutorial .card-links {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -42,7 +55,7 @@
   flex-wrap: wrap;
 }
 
-.Issue-view .tutorial .links a {
+.Issue-view .tutorial .card-links a {
   margin: 10px 0;
 }
 
@@ -50,7 +63,7 @@
   .Issue-view {
     padding: 0 30px;
   }
-  .Issue-view .tutorial .links {
+  .Issue-view .tutorial .card-links {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -60,23 +73,23 @@
 @media (min-width: 800px) {
   .Issue-view .tutorial {
     display: grid;
-    grid-template-areas: "title links" "content links";
+    grid-template-areas: "header links" "content links";
     grid-template-columns: auto 150px;
   }
-  .Issue-view .tutorial .title {
-    grid-area: title;
+  .Issue-view .tutorial .card-header {
+    grid-area: header;
   }
-  .Issue-view .tutorial .content {
+  .Issue-view .tutorial .card-content {
     grid-area: content;
   }
-  .Issue-view .tutorial .links {
+  .Issue-view .tutorial .card-links {
     grid-area: links;
     justify-content: flex-start;
     align-items: center;
     margin-left: 15px;
     padding: 0 15px;
   }
-  .Issue-view .tutorial .links a {
+  .Issue-view .tutorial .card-links a {
     margin: 0;
   }
 }
@@ -84,5 +97,8 @@
 @media (prefers-color-scheme: dark) {
   .Issue-view .tutorial {
     background: #444;
+  }
+  .Issue-view .tutorial .version-badge {
+    background: #666;
   }
 }
