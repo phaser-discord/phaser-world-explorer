@@ -22,32 +22,9 @@
 
 .Issue-view .tutorial {
   list-style: none;
-  background: #eee;
-  padding: 15px;
-  border-radius: 15px;
-  margin: 15px 0;
 }
 
-.Issue-view .tutorial .card-header {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.Issue-view .tutorial .card-title {
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  font-size: 19px;
-}
-
-.Issue-view .tutorial .card-badge {
-  background: #ccc;
-  border-radius: 25px;
-  font-size: 15px;
-  padding: 7px 10px;
-}
-
-.Issue-view .tutorial .card-footer {
+.Issue-view .tutorial .card-footer .tags {
   display: flex;
   flex-wrap: wrap;
 }
@@ -56,61 +33,8 @@
   margin: 5px;
 }
 
-.Issue-view .tutorial .card-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  justify-content:flex-start;
-  flex-wrap: wrap;
-}
-
-.Issue-view .tutorial .card-links a {
-  margin: 10px 0;
-}
-
 @media (min-width: 500px) {
   .Issue-view {
     padding: 0 30px;
-  }
-  .Issue-view .tutorial .card-links {
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width: 800px) {
-  .Issue-view .tutorial {
-    display: grid;
-    grid-template-areas: "header links" "content links" "footer links";
-    grid-template-columns: auto 150px;
-  }
-  .Issue-view .tutorial .card-header {
-    grid-area: header;
-  }
-  .Issue-view .tutorial .card-content {
-    grid-area: content;
-  }
-  .Issue-view .tutorial .card-footer {
-    grid-area: footer;
-  }
-  .Issue-view .tutorial .card-links {
-    grid-area: links;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 15px;
-    padding: 0 15px;
-  }
-  .Issue-view .tutorial .card-links a {
-    margin: 0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .Issue-view .tutorial {
-    background: #444;
-  }
-  .Issue-view .tutorial .card-badge {
-    background: #666;
   }
 }

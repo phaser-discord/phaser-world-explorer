@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Card from './Card'
 import { withNewsletter } from '../util/NewsletterContext'
 
 import './NewsletterView.css'
@@ -10,24 +11,27 @@ const downloadURL = item =>
 const Tutorial = ({ tutorial }) => {
     return (
         <li className="tutorial" aria-label="Tutorial list item">
-            <div className="card-header">
-                <h4 className="card-title">{tutorial.name}</h4>
-                <div className="card-badge" aria-label="Phaser version for this tutorial">
-                    Phaser {tutorial.version === "v2" ? '2/CE' : '3'}
-                </div>
-            </div>
-            <div className="card-content">
+            <Card header={
+                <>
+                    <h4 className="card-title">{tutorial.name}</h4>
+                    <div className="card-badge" aria-label="Phaser version for this tutorial">
+                        Phaser {tutorial.version === "v2" ? '2/CE' : '3'}
+                    </div>
+                </>
+            } content={
                 <p aria-label="Tutorial description">{tutorial.desc}</p>
-            </div>
-            <div className="card-footer" aria-label="Tags">
-                {tutorial.tags && tutorial.tags.map(tag => {
-                    return <div className="card-badge" key={tag}>{tag}</div>
-                })}
-            </div>
-            <div className="card-links">
-                <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>
-                <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
-            </div>
+            } footer={
+                <div className="tags" aria-label="Tags">
+                    {tutorial.tags && tutorial.tags.map(tag => {
+                        return <div className="card-badge" key={tag}>{tag}</div>
+                    })}
+                </div>
+            } links={
+                <>
+                    <a href={tutorial.link} target="_blank" rel="noopener noreferrer">Read more on phaser.io</a>
+                    <a href={tutorial.directlink} target="_blank" rel="noopener noreferrer">Go directly to site</a>
+                </>
+            } />
         </li>
     );
 }
