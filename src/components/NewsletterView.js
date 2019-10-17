@@ -20,7 +20,7 @@ const Tutorial = ({ tutorial }) => {
                 <p aria-label="Tutorial description">{tutorial.desc}</p>
             </div>
             <div className="card-footer" aria-label="Tags">
-                {tutorial.tags.map(tag => {
+                {tutorial.tags && tutorial.tags.map(tag => {
                     return <div className="card-badge" key={tag}>{tag}</div>
                 })}
             </div>
