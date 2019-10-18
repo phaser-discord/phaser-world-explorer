@@ -1,27 +1,27 @@
-import search from './search'
-import jsyaml from 'js-yaml'
+import search from './search';
+import jsyaml from 'js-yaml';
 
 describe('search', () => {
   it('should run', () => {
-    const testStr = 'Environment'
-    const version = 'v3'
-    const results = search(testStr, testData, version)
-    const issues = Object.keys(results)
+    const testStr = 'Environment';
+    const version = 'v3';
+    const results = search(testStr, testData, version);
+    const issues = Object.keys(results);
 
-    let str = `Searching for ${testStr}; version ${version}\n\n`
+    let str = `Searching for ${testStr}; version ${version}\n\n`;
     issues.forEach(k => {
-      str += `${k}:\n`
-      str += '  Tutorials:\n'
+      str += `${k}:\n`;
+      str += '  Tutorials:\n';
       results[k].tutorials.forEach(u => {
-        str += `    ${u.name} (${u.version})\n`
-      })
-      str += '  Updates:\n'
-      results[k].updates.forEach(u => str += `    ${u}\n`)
-    })
+        str += `    ${u.name} (${u.version})\n`;
+      });
+      str += '  Updates:\n';
+      results[k].updates.forEach(u => (str += `    ${u}\n`));
+    });
 
-    console.log(str)
-  })
-})
+    console.log(str);
+  });
+});
 
 const testData = jsyaml.safeLoad(`
 - Issue: 122
@@ -82,4 +82,4 @@ const testData = jsyaml.safeLoad(`
   Updates:
     - v3.7.0 development progress
     - Changes coming to Loader Plugin and File Types
-`)
+`);

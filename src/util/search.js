@@ -1,4 +1,4 @@
-import fuzzy from 'fuzzy'
+import fuzzy from 'fuzzy';
 
 /**
  * search returns items out of the Tutorials and Update lists of a newsletter
@@ -17,58 +17,64 @@ import fuzzy from 'fuzzy'
  */
 
 const search = (searchString, data, tutVersion) =>
-  data.reduce(
-    (acc, cur) => {
-      const limitVersion = !!tutVersion
-      const tutorials = cur.Tutorials || []
-      const updates = cur.Updates || []
+  data.reduce((acc, cur) => {
+    const limitVersion = !!tutVersion;
+    const tutorials = cur.Tutorials || [];
+    const updates = cur.Updates || [];
 
-      const tutorialMatches = tutorials.filter(t =>
+    const tutorialMatches = tutorials.filter(
+      t =>
         (!limitVersion || tutVersion === t.version) &&
-        fuzzy.filter(
-          searchString,
-          [t.name, t.desc, ...(t.tags || [])],
-        ).map(e => e.string).length !== 0
-      )
+        fuzzy
+          .filter(searchString, [t.name, t.desc, ...(t.tags || [])])
+          .map(e => e.string).length !== 0
+    );
 
-      const updateMatches = updates.filter(u =>
-        fuzzy.filter(searchString, [u]).map(e => e.string).length !== 0
-      )
+    const updateMatches = updates.filter(
+      u => fuzzy.filter(searchString, [u]).map(e => e.string).length !== 0
+    );
 
-      return {
-        [cur.Issue]: { ref: cur, tutorials: tutorialMatches, updates: updateMatches },
-        ...acc,
-      }
-    },
-    {},
-  )
+    return {
+      [cur.Issue]: {
+        ref: cur,
+        tutorials: tutorialMatches,
+        updates: updateMatches
+      },
+      ...acc
+    };
+  }, {});
 
 export const simpleSearch = (searchString, data, tutVersion) => {
-  const ss = searchString.toLowerCase()
+  const ss = searchString.toLowerCase();
 
-  return data.reduce(
-    (acc, cur) => {
-      const limitVersion = !!tutVersion
-      const tutorials = cur.Tutorials || []
-      const updates = cur.Updates || []
+  return data.reduce((acc, cur) => {
+    const limitVersion = !!tutVersion;
+    const tutorials = cur.Tutorials || [];
+    const updates = cur.Updates || [];
 
-      const tutorialMatches = tutorials.filter(t => {
-        const versionMatch = (!limitVersion || tutVersion === t.version)
-        const nameMatch = t.name.toLowerCase().indexOf(ss) !== -1
-        const descMatch = t.desc.toLowerCase().indexOf(ss) !== -1
-        const tagMatch = (t.tags || []).filter(t => t.toLowerCase().indexOf(ss) !== -1).length !== 0
-        return versionMatch && (nameMatch || descMatch || tagMatch)
-      })
+    const tutorialMatches = tutorials.filter(t => {
+      const versionMatch = !limitVersion || tutVersion === t.version;
+      const nameMatch = t.name.toLowerCase().indexOf(ss) !== -1;
+      const descMatch = t.desc.toLowerCase().indexOf(ss) !== -1;
+      const tagMatch =
+        (t.tags || []).filter(t => t.toLowerCase().indexOf(ss) !== -1)
+          .length !== 0;
+      return versionMatch && (nameMatch || descMatch || tagMatch);
+    });
 
-      const updateMatches = updates.filter(u => u.toLowerCase().indexOf(ss) !== -1)
+    const updateMatches = updates.filter(
+      u => u.toLowerCase().indexOf(ss) !== -1
+    );
 
-      return {
-        [cur.Issue]: { ref: cur, tutorials: tutorialMatches, updates: updateMatches },
-        ...acc,
-      }
-    },
-    {},
-  )
-}
+    return {
+      [cur.Issue]: {
+        ref: cur,
+        tutorials: tutorialMatches,
+        updates: updateMatches
+      },
+      ...acc
+    };
+  }, {});
+};
 
-export default search
+export default search;

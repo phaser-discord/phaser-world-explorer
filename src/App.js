@@ -1,12 +1,12 @@
-import React from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Layout from './Layout'
-import NewsletterRoute from './NewsletterRoute'
-import SearchResults from './components/SearchResults'
-import { NewsletterProvider } from './util/NewsletterContext'
+import Layout from './Layout';
+import NewsletterRoute from './NewsletterRoute';
+import SearchResults from './components/SearchResults';
+import { NewsletterProvider } from './util/NewsletterContext';
 
-import './App.css'
+import './App.css';
 
 const App = () => (
   <div className="App">
@@ -21,6 +21,6 @@ const App = () => (
       </Layout>
     </NewsletterProvider>
   </div>
-)
+);
 
 export default App;
