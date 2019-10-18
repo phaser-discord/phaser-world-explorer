@@ -43,5 +43,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
   }
 }
