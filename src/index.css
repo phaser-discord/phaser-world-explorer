@@ -14,17 +14,16 @@ body,
 :root {
   --white-1: #ffffff;
   --white-2: #eeeeee;
-  --lightgray-1: #dddddd;
+  --lightgray-1: rgb(230, 230, 230);
   --lightgray-2: #cccccc;
-  --darkgray-1: #999999;
+  --darkgray-1: #aaaaaa;
   --darkgray-2: #666666;
-  --darkgray-3: #555555;
-  --darkgray-4: #444444;
+  --darkgray-3: #444444;
   --black-1: #333333;
   --black-2: #222222;
-  --black-3: #000000;
 
   --accent-1: #428bca;
+  --accent-2: #68a2d4;
 
   --background-color: var(--white-1);
   --text-color: var(--black-1);
@@ -32,11 +31,11 @@ body,
   --header-text-color: var(--white-1);
   --link-text-color: var(--accent-1);
   --panel-border-color: var(--black-1);
-  --top-panel-background-color: var(--lightgray-1);
+  --top-panel-background-color: var(--lightgray-2);
   --active-background-color: var(--white-2);
-  --outline-color: var(--black-3);
+  --outline-color: var(--black-1);
   --focus-color: var(--darkgray-2);
-  --card-background-color: var(--white-2);
+  --card-background-color: var(--lightgray-1);
   --card-badge-color: var(--lightgray-2);
 }
 
@@ -44,10 +43,13 @@ body,
   :root {
     --background-color: var(--black-1);
     --text-color: var(--white-1);
-    --top-panel-background-color: var(--darkgray-3);
+    --link-text-color: var(--accent-2);
+    --panel-border-color: var(--darkgray-2);
+    --top-panel-background-color: var(--darkgray-2);
+    --active-background-color: var(--black-2);
     --outline-color: var(--darkgray-1);
     --focus-color: var(--white-2);
-    --card-background-color: var(--darkgray-4);
-    --card-background-color: var(--darkgray-2);
+    --card-background-color: var(--darkgray-3);
+    --card-badge-color: var(--darkgray-2);
   }
 }
