@@ -1,5 +1,5 @@
 .card {
-  background: #eee;
+  background: var(--card-background-color);
   padding: 15px;
   border-radius: 15px;
   margin: 15px 0;
@@ -18,7 +18,7 @@
 }
 
 .card .card-badge {
-  background: #ccc;
+  background: var(--card-badge-color);
   border-radius: 25px;
   font-size: 15px;
   padding: 7px 10px;
@@ -82,14 +82,5 @@
 
   .card .card-links a {
     margin: 0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: #444;
-  }
-  .card .card-badge {
-    background: #666;
   }
 }

@@ -9,9 +9,10 @@ form.search .input {
 
 form.search input,
 form.search button {
-  background: white;
+  background: var(--background-color);
+  color: var(--text-color);
   border-radius: 1px;
-  border: 2px solid;
+  border: 2px solid var(--outline-color);
   font-size: 17px;
   box-sizing: border-box;
   width: 100%;
@@ -31,12 +32,12 @@ form.search button .material-icons {
 }
 
 form.search button:active {
-  background: #eee;
+  background: var(--active-background-color);
 }
 
 form.search input:focus,
 form.search button:focus {
-  border: 2px solid #666;
+  border: 2px solid var(--focus-color);
   outline: none;
 }
 

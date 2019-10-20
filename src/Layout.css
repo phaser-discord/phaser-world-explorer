@@ -3,10 +3,10 @@
 }
 
 .header {
-  background-color: #222;
+  background-color: var(--header-background-color);
   height: 50px;
   padding: 20px;
-  color: white;
+  color: var(--header-text-color);
   text-align: center;
 }
 
@@ -16,5 +16,5 @@
 
 .title a,
 .title a:visited {
-  color: white;
+  color: var(--header-text-color);
 }

@@ -8,7 +8,7 @@
 
 .leftPanel {
   min-width: 250px;
-  border-right: solid 1px grey;
+  border-right: solid 1px var(--panel-border-color);
   padding: 0 10px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .topPanel {
-  background-color: #dddddd;
+  background-color: var(--top-panel-background-color);
   padding-bottom: 20px;
 }
 
@@ -67,10 +67,4 @@
 .leftPanel li,
 .topPanel li {
   margin: 0.15em 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .topPanel {
-    background-color: #555;
-  }
 }

@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
 }
 html,
 body,
@@ -9,9 +11,29 @@ body,
   height: 100%;
 }
 
+:root {
+  --background-color: white;
+  --text-color: black;
+  --header-background-color: #222222;
+  --header-text-color: white;
+  --link-text-color: #428bca;
+  --panel-border-color: grey;
+  --top-panel-background-color: #dddddd;
+  --active-background-color: #eeeeee;
+  --outline-color: black;
+  --focus-color: #666666;
+  --card-background-color: #eeeeee;
+  --card-badge-color: #cccccc;
+}
+
 @media (prefers-color-scheme: dark) {
-  body {
-    background: #333333;
-    color: white;
+  :root {
+    --background-color: #333333;
+    --text-color: white;
+    --top-panel-background-color: #555555;
+    --outline-color: #999999;
+    --focus-color: #eeeeee;
+    --card-background-color: #444444;
+    --card-background-color: #666666;
   }
 }
