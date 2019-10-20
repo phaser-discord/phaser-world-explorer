@@ -1,18 +1,3 @@
 .searchResults .tutorials {
   padding: 0;
 }
-
-.searchResults .tutorial {
-  list-style: none;
-}
-
-.searchResults .tutorial .card-footer .tags,
-.searchResults .tutorial .badges {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.searchResults .tutorial .card-footer .card-badge,
-.searchResults .tutorial .badges .card-badge {
-  margin: 5px;
-}

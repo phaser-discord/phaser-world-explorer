@@ -20,19 +20,6 @@
   padding: 0;
 }
 
-.Issue-view .tutorial {
-  list-style: none;
-}
-
-.Issue-view .tutorial .card-footer .tags {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Issue-view .tutorial .card-footer .card-badge {
-  margin: 5px;
-}
-
 @media (min-width: 500px) {
   .Issue-view {
     padding: 0 30px;
