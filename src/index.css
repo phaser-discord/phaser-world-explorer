@@ -12,28 +12,42 @@ body,
 }
 
 :root {
-  --background-color: white;
-  --text-color: black;
-  --header-background-color: #222222;
-  --header-text-color: white;
-  --link-text-color: #428bca;
-  --panel-border-color: grey;
-  --top-panel-background-color: #dddddd;
-  --active-background-color: #eeeeee;
-  --outline-color: black;
-  --focus-color: #666666;
-  --card-background-color: #eeeeee;
-  --card-badge-color: #cccccc;
+  --white-1: #ffffff;
+  --white-2: #eeeeee;
+  --lightgray-1: #dddddd;
+  --lightgray-2: #cccccc;
+  --darkgray-1: #999999;
+  --darkgray-2: #666666;
+  --darkgray-3: #555555;
+  --darkgray-4: #444444;
+  --black-1: #333333;
+  --black-2: #222222;
+  --black-3: #000000;
+
+  --accent-1: #428bca;
+
+  --background-color: var(--white-1);
+  --text-color: var(--black-1);
+  --header-background-color: var(--black-2);
+  --header-text-color: var(--white-1);
+  --link-text-color: var(--accent-1);
+  --panel-border-color: var(--black-1);
+  --top-panel-background-color: var(--lightgray-1);
+  --active-background-color: var(--white-2);
+  --outline-color: var(--black-3);
+  --focus-color: var(--darkgray-2);
+  --card-background-color: var(--white-2);
+  --card-badge-color: var(--lightgray-2);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #333333;
-    --text-color: white;
-    --top-panel-background-color: #555555;
-    --outline-color: #999999;
-    --focus-color: #eeeeee;
-    --card-background-color: #444444;
-    --card-background-color: #666666;
+    --background-color: var(--black-1);
+    --text-color: var(--white-1);
+    --top-panel-background-color: var(--darkgray-3);
+    --outline-color: var(--darkgray-1);
+    --focus-color: var(--white-2);
+    --card-background-color: var(--darkgray-4);
+    --card-background-color: var(--darkgray-2);
   }
 }
