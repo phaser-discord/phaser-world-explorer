@@ -43,6 +43,10 @@
   margin-right: 20px;
 }
 
+.nav h2 {
+  font-size: 1.3em;
+}
+
 .topPanel h3 {
   margin: 0;
   margin-bottom: -2px;
@@ -54,7 +58,8 @@
   padding: 20px 10px 0;
 }
 
-.topPanel .nav h3 {
+.topPanel .nav h3,
+.topPanel .nav h2 {
   margin-bottom: 1em;
   margin-top: 0.5em;
 }

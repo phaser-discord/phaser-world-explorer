@@ -21,12 +21,9 @@ const Nav = props => {
 
   return (
     <nav className="nav">
+      <Search onSearch={props.onSearch} />
       <div>
-        <h3>Search</h3>
-        <Search onSearch={props.onSearch} />
-      </div>
-      <div>
-        <h3>Newsletters</h3>
+        <h2>Newsletters</h2>
         <ul onClick={props.onClickIssue}>{newsletterLinks}</ul>
       </div>
     </nav>

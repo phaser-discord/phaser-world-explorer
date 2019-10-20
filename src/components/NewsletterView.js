@@ -79,7 +79,7 @@ class NewsletterView extends React.Component {
     this.props.history.listen(stuff => this.issueRef.current.focus());
 
     return (
-      <div className="Issue-view">
+      <main className="Issue-view">
         <h2>
           <a
             href={issue.Link}
@@ -128,7 +128,7 @@ class NewsletterView extends React.Component {
             </ul>
           </div>
         ) : null}
-      </div>
+      </main>
     );
   }
 }
