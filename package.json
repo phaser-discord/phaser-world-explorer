@@ -12,7 +12,12 @@
     "react-dom": "^16.10.2",
     "react-media": "^1.10.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.2.0",
+    "react-scripts": "^3.2.0"
+  },
+  "devDependencies": {
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
     "yarn": "^1.19.0"
   },
   "scripts": {
@@ -20,13 +25,27 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build",
-    "deploy": "surge -p build -d phaser-world-explorer.surge.sh"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  }
 }

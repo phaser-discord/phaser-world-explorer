@@ -14,7 +14,7 @@
 
 .rightPanel {
   padding: 0 10px;
-  height:100%;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -56,14 +56,16 @@
 
 .topPanel .nav h3 {
   margin-bottom: 1em;
-  margin-top: 0.5em
+  margin-top: 0.5em;
 }
 
-.rightPanel li, .bottomPanel li {
+.rightPanel li,
+.bottomPanel li {
   margin: 0.5em 0;
 }
 
-.leftPanel li, .topPanel li {
+.leftPanel li,
+.topPanel li {
   margin: 0.15em 0;
 }
 

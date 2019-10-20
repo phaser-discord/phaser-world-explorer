@@ -1,22 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import jsyaml from 'js-yaml'
-
+import jsyaml from 'js-yaml';
 
 const Context = React.createContext({
   isLoaded: false,
   error: null,
-  items: null,
-})
+  items: null
+});
 
 export class NewsletterProvider extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isLoaded: false,
       error: null,
-      items: null,
-    }
+      items: null
+    };
   }
 
   componentDidMount() {
@@ -27,15 +26,15 @@ export class NewsletterProvider extends React.Component {
           this.setState({
             isLoaded: true,
             items: jsyaml.safeLoad(res)
-          })
+          });
         },
         err => {
           this.setState({
             isLoaded: true,
-            error: err,
-          })
-        },
-      )
+            error: err
+          });
+        }
+      );
   }
 
   render() {
@@ -43,18 +42,14 @@ export class NewsletterProvider extends React.Component {
       <Context.Provider value={this.state}>
         {this.props.children}
       </Context.Provider>
-    )
+    );
   }
 }
 
-export const withNewsletter = (Component) =>
-  (props) =>
-    <Context.Consumer>
-      {
-        ({ isLoaded, error, items }) =>
-          <Component
-            {...props}
-            newsletter={{ isLoaded, error, items }}
-          />
-      }
-    </Context.Consumer>
+export const withNewsletter = Component => props => (
+  <Context.Consumer>
+    {({ isLoaded, error, items }) => (
+      <Component {...props} newsletter={{ isLoaded, error, items }} />
+    )}
+  </Context.Consumer>
+);

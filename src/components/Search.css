@@ -7,7 +7,8 @@ form.search .input {
   margin-right: 5px;
 }
 
-form.search input, form.search button {
+form.search input,
+form.search button {
   background: white;
   border-radius: 1px;
   border: 2px solid;
@@ -16,7 +17,7 @@ form.search input, form.search button {
   width: 100%;
 }
 
-form.search input[type="text"] {
+form.search input[type='text'] {
   padding: 6px;
 }
 
@@ -30,14 +31,15 @@ form.search button .material-icons {
 }
 
 form.search button:active {
-  background: #EEE;
+  background: #eee;
 }
 
-form.search input:focus, form.search button:focus {
+form.search input:focus,
+form.search button:focus {
   border: 2px solid #666;
   outline: none;
 }
 
 .topPanel .search {
-  margin-left:20px;
+  margin-left: 20px;
 }
