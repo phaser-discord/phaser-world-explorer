@@ -77,9 +77,13 @@ class NewsletterView extends React.Component {
             <h3>Updates</h3>
             This issue contains info/updates on the following Phaser-related
             systems/plugins/features/projects:
-            <ul>
+            <ul className="updates">
               {issue.Updates.map(update => {
-                return <li key={update}>{update}</li>;
+                return (
+                  <li key={update}>
+                    <Card content={update} />
+                  </li>
+                );
               })}
             </ul>
           </div>

@@ -5,10 +5,10 @@ import './Card.css';
 const Card = ({ header, content, footer, links }) => {
   return (
     <div className="card">
-      <div className="card-header">{header}</div>
-      <div className="card-content">{content}</div>
-      <div className="card-footer">{footer}</div>
-      <div className="card-links">{links}</div>
+      {header ? <div className="card-header">{header}</div> : null}
+      {content ? <div className="card-content">{content}</div> : null}
+      {footer ? <div className="card-footer">{footer}</div> : null}
+      {links ? <div className="card-links">{links}</div> : null}
     </div>
   );
 };

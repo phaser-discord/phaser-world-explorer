@@ -11,7 +11,24 @@ import './SearchResults.css';
 const Update = ({ update, updateLink, issueNumber }) => {
   return (
     <li>
-      <a href={updateLink}>Issue {issueNumber}</a>: {update}
+      <Card
+        header={
+          <>
+            {update}
+            <div
+              className="card-badge"
+              aria-label="Issue where this update is from"
+            >
+              Issue {issueNumber}
+            </div>
+          </>
+        }
+        links={
+          <a href={updateLink} target="_blank" rel="noopener noreferrer">
+            Read newsletter
+          </a>
+        }
+      />
     </li>
   );
 };
@@ -47,12 +64,16 @@ class ExpandedSearchResults extends React.Component {
     });
 
     return (
-      <div className="searchResults">
-        <h3>Tutorials</h3>
-        <ul className="tutorials">{tutorials}</ul>
-        <h3>Phaser Updates</h3>
-        <ul>{updates}</ul>
-      </div>
+      <>
+        <div>
+          <h3>Tutorials</h3>
+          <ul className="tutorials">{tutorials}</ul>
+        </div>
+        <div>
+          <h3>Phaser Updates</h3>
+          <ul className="updates">{updates}</ul>
+        </div>
+      </>
     );
   }
 
@@ -63,10 +84,10 @@ class ExpandedSearchResults extends React.Component {
     }
 
     return (
-      <div>
-        <h3>Search Results: {searchArgs.q}</h3>
+      <>
+        <h2>Search Results: {searchArgs.q}</h2>
         {this.results(searchArgs.q)}
-      </div>
+      </>
     );
   }
 }
@@ -76,7 +97,11 @@ const SearchResults = props => {
     props.location && props.location.search
       ? qs.parse(props.location.search)
       : null;
-  return <ExpandedSearchResults {...props} searchArgs={search} />;
+  return (
+    <main className="searchResults">
+      <ExpandedSearchResults {...props} searchArgs={search} />
+    </main>
+  );
 };
 
 export default withNewsletter(SearchResults);

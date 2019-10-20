@@ -16,8 +16,13 @@
   margin-right: 5px;
 }
 
-.Issue-view .tutorials {
+.Issue-view .tutorials,
+.Issue-view .updates {
   padding: 0;
+}
+
+.updates li {
+  list-style: none;
 }
 
 @media (min-width: 500px) {
