@@ -41,13 +41,15 @@ const Tutorial = ({ tutorial }) => {
             <a href={tutorial.link} target="_blank" rel="noopener noreferrer">
               Read more on phaser.io
             </a>
-            <a
-              href={tutorial.directlink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Go directly to site
-            </a>
+            {tutorial.directlink && (
+              <a
+                href={tutorial.directlink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Go directly to site
+              </a>
+            )}
           </>
         }
       />
