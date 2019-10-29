@@ -9,24 +9,47 @@ import './Nav.css';
 
 const mkLink = itm => (
   <li key={`${itm.Issue}-li`}>
-    <NewsletterListItem key={itm.Issue} item={itm} />
+    <NewsletterListItem item={itm} />
   </li>
 );
 
 const Nav = props => {
   const newsletter = props.newsletter || {};
-  const newsletterLinks = newsletter.isLoaded ? (
-    newsletter.items.map(mkLink)
-  ) : (
-    <li>Loading...</li>
-  );
+
+  const dateSortedNewsletters = {};
+  if (newsletter.isLoaded) {
+    newsletter.items.forEach(issue => {
+      const year = issue.Date.split('/')[1];
+
+      if (dateSortedNewsletters[year]) {
+        dateSortedNewsletters[year].push(issue);
+      } else {
+        dateSortedNewsletters[year] = [issue];
+      }
+    });
+  }
+
+  let newsletterLinks = Object.keys(dateSortedNewsletters)
+    .reverse()
+    .map(year => {
+      return (
+        <div key={year}>
+          <h3>{year}</h3>
+          <ul onClick={props.onClickIssue}>
+            {dateSortedNewsletters[year].map(mkLink)}
+          </ul>
+        </div>
+      );
+    });
+
+  console.log(newsletterLinks);
 
   return (
     <nav className="nav">
       <Search onSearch={props.onSearch} className="searchContainer" />
       <div className="issueContainer">
         <h2>Newsletters</h2>
-        <ul onClick={props.onClickIssue}>{newsletterLinks}</ul>
+        {newsletter.isLoaded ? newsletterLinks : <p>Loading...</p>}
       </div>
     </nav>
   );
