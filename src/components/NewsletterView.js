@@ -34,6 +34,13 @@ class NewsletterView extends React.Component {
       this.issueRef.current ? this.issueRef.current.focus() : null
     );
 
+    const date = new Date('01/' + issue.Date); // Add 01/ to be valid date, e.g. 01/01/2019
+    const dateFormatted = new Intl.DateTimeFormat('en-US', {
+      // Request only month and year, since the day was fake
+      month: 'short',
+      year: 'numeric'
+    }).format(date);
+
     return (
       <main className="Issue-view">
         <h2>
@@ -43,7 +50,7 @@ class NewsletterView extends React.Component {
             rel="noopener noreferrer"
             ref={this.issueRef}
           >
-            Phaser World Issue {issue.Issue}
+            Phaser World Issue {issue.Issue} ({dateFormatted})
           </a>
         </h2>
         <a href={downloadURL(issue)} className="downloadLink">
