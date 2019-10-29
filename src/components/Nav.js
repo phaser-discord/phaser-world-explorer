@@ -42,7 +42,7 @@ const SortedNewsletters = props => {
       return (
         <div key={year} className="issue-year">
           <Collapsible open trigger={menuTrigger(year)}>
-            <ul onClick={props.onClickIssue}>
+            <ul onClick={props.onClick}>
               {dateSortedNewsletters[year].map(mkLink)}
             </ul>
           </Collapsible>
@@ -62,7 +62,7 @@ const Nav = props => {
         {newsletter.isLoaded ? (
           <SortedNewsletters
             newsletters={newsletter.items}
-            onClick={props.onClick}
+            onClick={props.onClickIssue}
           />
         ) : (
           <p>Loading...</p>
