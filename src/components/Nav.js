@@ -5,6 +5,8 @@ import Search from './Search';
 import NewsletterListItem from '../components/NewsletterListItem';
 import { withNewsletter } from '../util/NewsletterContext';
 
+import './Nav.css';
+
 const mkLink = itm => (
   <li key={`${itm.Issue}-li`}>
     <NewsletterListItem key={itm.Issue} item={itm} />
@@ -21,8 +23,8 @@ const Nav = props => {
 
   return (
     <nav className="nav">
-      <Search onSearch={props.onSearch} />
-      <div>
+      <Search onSearch={props.onSearch} className="searchContainer" />
+      <div className="issueContainer">
         <h2>Newsletters</h2>
         <ul onClick={props.onClickIssue}>{newsletterLinks}</ul>
       </div>

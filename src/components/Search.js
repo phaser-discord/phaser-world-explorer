@@ -50,7 +50,7 @@ class Search extends React.Component {
     const random = Math.floor(Math.random() * 1000);
 
     return (
-      <div>
+      <div className={this.props.className}>
         {this.renderRedirect()}
         <h2>
           <label htmlFor={'search' + random}>Search</label>
