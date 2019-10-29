@@ -1,4 +1,5 @@
 import React from 'react';
+import Collapsible from 'react-collapsible';
 
 import Search from './Search';
 
@@ -11,6 +12,15 @@ const mkLink = itm => (
   <li key={`${itm.Issue}-li`}>
     <NewsletterListItem item={itm} />
   </li>
+);
+
+const menuTrigger = year => (
+  <div className="menu-trigger">
+    <span className="menu-icon material-icons" aria-hidden>
+      arrow_drop_down
+    </span>
+    <h3>{year}</h3>
+  </div>
 );
 
 const SortedNewsletters = props => {
@@ -30,11 +40,12 @@ const SortedNewsletters = props => {
     .reverse()
     .map(year => {
       return (
-        <div key={year}>
-          <h3>{year}</h3>
-          <ul onClick={props.onClickIssue}>
-            {dateSortedNewsletters[year].map(mkLink)}
-          </ul>
+        <div key={year} className="issue-year">
+          <Collapsible open trigger={menuTrigger(year)}>
+            <ul onClick={props.onClickIssue}>
+              {dateSortedNewsletters[year].map(mkLink)}
+            </ul>
+          </Collapsible>
         </div>
       );
     });
