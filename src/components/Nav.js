@@ -13,23 +13,20 @@ const mkLink = itm => (
   </li>
 );
 
-const Nav = props => {
-  const newsletter = props.newsletter || {};
-
+const SortedNewsletters = props => {
   const dateSortedNewsletters = {};
-  if (newsletter.isLoaded) {
-    newsletter.items.forEach(issue => {
-      const year = issue.Date.split('/')[1];
 
-      if (dateSortedNewsletters[year]) {
-        dateSortedNewsletters[year].push(issue);
-      } else {
-        dateSortedNewsletters[year] = [issue];
-      }
-    });
-  }
+  props.newsletters.forEach(issue => {
+    const year = issue.Date.split('/')[1];
 
-  let newsletterLinks = Object.keys(dateSortedNewsletters)
+    if (dateSortedNewsletters[year]) {
+      dateSortedNewsletters[year].push(issue);
+    } else {
+      dateSortedNewsletters[year] = [issue];
+    }
+  });
+
+  return Object.keys(dateSortedNewsletters)
     .reverse()
     .map(year => {
       return (
@@ -41,15 +38,24 @@ const Nav = props => {
         </div>
       );
     });
+};
 
-  console.log(newsletterLinks);
+const Nav = props => {
+  const newsletter = props.newsletter || {};
 
   return (
     <nav className="nav">
       <Search onSearch={props.onSearch} className="searchContainer" />
       <div className="issueContainer">
         <h2>Newsletters</h2>
-        {newsletter.isLoaded ? newsletterLinks : <p>Loading...</p>}
+        {newsletter.isLoaded ? (
+          <SortedNewsletters
+            newsletters={newsletter.items}
+            onClick={props.onClick}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </nav>
   );
