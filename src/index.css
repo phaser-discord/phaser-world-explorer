@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
 }
 html,
 body,
@@ -9,9 +11,45 @@ body,
   height: 100%;
 }
 
+:root {
+  --white-1: #ffffff;
+  --white-2: #eeeeee;
+  --lightgray-1: rgb(230, 230, 230);
+  --lightgray-2: #cccccc;
+  --darkgray-1: #aaaaaa;
+  --darkgray-2: #666666;
+  --darkgray-3: #444444;
+  --black-1: #333333;
+  --black-2: #222222;
+
+  --accent-1: #2d6a9f;
+  --accent-2: #8cb8de;
+
+  --background-color: var(--white-1);
+  --text-color: var(--black-1);
+  --header-background-color: var(--black-2);
+  --header-text-color: var(--white-1);
+  --link-text-color: var(--accent-1);
+  --panel-border-color: var(--black-1);
+  --top-panel-background-color: var(--lightgray-1);
+  --active-background-color: var(--white-2);
+  --outline-color: var(--black-1);
+  --focus-color: var(--darkgray-2);
+  --card-background-color: var(--lightgray-1);
+  --card-badge-color: var(--lightgray-2);
+}
+
 @media (prefers-color-scheme: dark) {
-  body {
-    background: #333333;
-    color: white;
+  :root {
+    --background-color: var(--black-1);
+    --text-color: var(--white-1);
+    --link-text-color: var(--accent-2);
+    --panel-border-color: var(--darkgray-2);
+    --top-panel-background-color: var(--darkgray-2);
+    --active-background-color: var(--black-2);
+    --outline-color: var(--darkgray-1);
+    --focus-color: var(--white-2);
+    --card-background-color: var(--darkgray-3);
+    --card-badge-color: var(--darkgray-2);
   }
 }

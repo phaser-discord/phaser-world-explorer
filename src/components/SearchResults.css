@@ -1,0 +1,18 @@
+.searchResults .tutorials,
+.searchResults .updates {
+  padding: 0;
+}
+
+.updates li {
+  list-style: none;
+}
+
+.updates .card-header {
+  align-items: center;
+}
+
+@media (min-width: 500px) {
+  .searchResults {
+    padding: 0 30px;
+  }
+}

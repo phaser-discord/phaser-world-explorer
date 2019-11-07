@@ -47,15 +47,28 @@ class Search extends React.Component {
   }
 
   render() {
+    const random = Math.floor(Math.random() * 1000);
+
     return (
-      <div>
+      <div className={this.props.className}>
         {this.renderRedirect()}
+        <h2>
+          <label htmlFor={'search' + random}>Search</label>
+        </h2>
         <form onSubmit={this.handleSubmit} className="search">
           <div className="input">
-            <input ref={this.contentSearchRef} type="text"></input>
+            <input
+              ref={this.contentSearchRef}
+              type="text"
+              id={'search' + random}
+            ></input>
           </div>
           <div className="button">
-            <button type="button" onClick={this.handleSearch}>
+            <button
+              type="button"
+              onClick={this.handleSearch}
+              aria-label="Search"
+            >
               <span className="material-icons">search</span>
             </button>
           </div>

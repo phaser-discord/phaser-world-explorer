@@ -1,4 +1,32 @@
 .Issue-view {
   font-size: large;
-  padding: 0 30px;
+}
+
+.Issue-view .downloadLink {
+  display: block;
+  font-size: 19px;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.Issue-view .downloadLink .material-icons {
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.Issue-view .tutorials,
+.Issue-view .updates {
+  padding: 0;
+}
+
+.updates li {
+  list-style: none;
+}
+
+@media (min-width: 500px) {
+  .Issue-view {
+    padding: 0 30px;
+  }
 }

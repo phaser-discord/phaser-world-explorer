@@ -1,0 +1,14 @@
+.tutorial {
+  list-style: none;
+}
+
+.tutorial .card-footer .tags,
+.tutorial .badges {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tutorial .card-footer .card-badge,
+.tutorial .badges .card-badge {
+  margin: 5px;
+}

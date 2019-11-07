@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Card from './Card';
+import Tutorial from './Tutorial';
 import { withNewsletter } from '../util/NewsletterContext';
 
 import './NewsletterView.css';
@@ -8,6 +10,11 @@ const downloadURL = item =>
   `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`;
 
 class NewsletterView extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.issueRef = React.createRef();
+  }
   currentIssue() {
     const { isLoaded, items } = this.props.newsletter;
     if (!isLoaded) {
@@ -23,17 +30,35 @@ class NewsletterView extends React.Component {
     if (!issue) {
       return null;
     }
+    this.props.history.listen(stuff =>
+      this.issueRef.current ? this.issueRef.current.focus() : null
+    );
+
+    const date = new Date('01/' + issue.Date); // Add 01/ to be valid date, e.g. 01/01/2019
+    const dateFormatted = new Intl.DateTimeFormat('en-US', {
+      // Request only month and year, since the day was fake
+      month: 'short',
+      year: 'numeric'
+    }).format(date);
 
     return (
-      <div className="Issue-view">
+      <main className="Issue-view">
         <h2>
-          <a href={issue.Link} target="_blank" rel="noopener noreferrer">
-            Phaser World Issue {issue.Issue}
+          <a
+            href={issue.Link}
+            target="_blank"
+            rel="noopener noreferrer"
+            ref={this.issueRef}
+          >
+            Phaser World Issue {issue.Issue} ({dateFormatted})
           </a>
         </h2>
-        <h5 style={{ paddingLeft: '10px' }}>
-          <a href={downloadURL(issue)}>Download as PDF</a>
-        </h5>
+        <a href={downloadURL(issue)} className="downloadLink">
+          <span className="material-icons" aria-hidden>
+            cloud_download
+          </span>
+          Download as PDF
+        </a>
         {issue.Releases ? (
           <div>
             <h3>Releases</h3>
@@ -47,35 +72,9 @@ class NewsletterView extends React.Component {
         {issue.Tutorials ? (
           <div>
             <h3>Tutorials</h3>
-            <ul>
+            <ul className="tutorials">
               {issue.Tutorials.map(tutorial => {
-                return (
-                  <li key={tutorial.name}>
-                    <h4>{tutorial.name}</h4>
-                    <p>{tutorial.desc}</p>
-                    <p>For Phaser {tutorial.version === 'v2' ? '2/CE' : '3'}</p>
-                    <p>
-                      <a
-                        href={tutorial.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Read more on phaser.io
-                      </a>
-                    </p>
-                    {tutorial.directlink ? (
-                      <p>
-                        <a
-                          href={tutorial.directlink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Go directly to site
-                        </a>
-                      </p>
-                    ) : null}
-                  </li>
-                );
+                return <Tutorial tutorial={tutorial} key={tutorial.name} />;
               })}
             </ul>
           </div>
@@ -83,16 +82,20 @@ class NewsletterView extends React.Component {
         {issue.Updates ? (
           <div>
             <h3>Updates</h3>
-            This issue contains info/updates on the following Phaser-relared
+            This issue contains info/updates on the following Phaser-related
             systems/plugins/features/projects:
-            <ul>
+            <ul className="updates">
               {issue.Updates.map(update => {
-                return <li key={update}>{update}</li>;
+                return (
+                  <li key={update}>
+                    <Card content={update} />
+                  </li>
+                );
               })}
             </ul>
           </div>
         ) : null}
-      </div>
+      </main>
     );
   }
 }

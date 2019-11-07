@@ -1,8 +1,37 @@
 import React from 'react';
 import qs from 'query-string';
 
+import Card from './Card';
+import Tutorial from './Tutorial';
 import { withNewsletter } from '../util/NewsletterContext';
 import { simpleSearch as search } from '../util/search';
+
+import './SearchResults.css';
+
+const Update = ({ update, updateLink, issueNumber }) => {
+  return (
+    <li>
+      <Card
+        header={
+          <>
+            {update}
+            <div
+              className="card-badge"
+              aria-label="Issue where this update is from"
+            >
+              Issue {issueNumber}
+            </div>
+          </>
+        }
+        links={
+          <a href={updateLink} target="_blank" rel="noopener noreferrer">
+            Read newsletter
+          </a>
+        }
+      />
+    </li>
+  );
+};
 
 class ExpandedSearchResults extends React.Component {
   results(query) {
@@ -18,29 +47,33 @@ class ExpandedSearchResults extends React.Component {
     Object.keys(r).map(iss => {
       tutorials.push(
         ...r[iss].tutorials.map((t, idx) => (
-          <li key={`tut-${iss}-${idx}`}>
-            <a href={t.directlink || t.link}>{t.name}</a> (phaser {t.version},
-            Issue {iss}): {t.desc}
-          </li>
+          <Tutorial key={`tut-${iss}-${idx}`} tutorial={t} issueNumber={iss} />
         ))
       );
 
       updates.push(
         ...r[iss].updates.map((u, idx) => (
-          <li key={`upd-${iss}-${idx}`}>
-            <a href={r[iss].ref.Link}>Issue {iss}</a>: {u}
-          </li>
+          <Update
+            key={`upd-${iss}-${idx}`}
+            update={u}
+            updateLink={r[iss].ref.Link}
+            issueNumber={iss}
+          />
         ))
       );
     });
 
     return (
-      <div>
-        <h3>Tutorials</h3>
-        <ul>{tutorials}</ul>
-        <h3>Phaser Updates</h3>
-        <ul>{updates}</ul>
-      </div>
+      <>
+        <div>
+          <h3>Tutorials</h3>
+          <ul className="tutorials">{tutorials}</ul>
+        </div>
+        <div>
+          <h3>Phaser Updates</h3>
+          <ul className="updates">{updates}</ul>
+        </div>
+      </>
     );
   }
 
@@ -51,10 +84,10 @@ class ExpandedSearchResults extends React.Component {
     }
 
     return (
-      <div>
-        <h3>Search Results: {searchArgs.q}</h3>
+      <>
+        <h2>Search Results: {searchArgs.q}</h2>
         {this.results(searchArgs.q)}
-      </div>
+      </>
     );
   }
 }
@@ -64,7 +97,11 @@ const SearchResults = props => {
     props.location && props.location.search
       ? qs.parse(props.location.search)
       : null;
-  return <ExpandedSearchResults {...props} searchArgs={search} />;
+  return (
+    <main className="searchResults">
+      <ExpandedSearchResults {...props} searchArgs={search} />
+    </main>
+  );
 };
 
 export default withNewsletter(SearchResults);

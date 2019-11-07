@@ -2,30 +2,11 @@
   height: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 50px;
-  padding: 20px;
-  color: white;
-  text-align: center;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
 a {
-  color: #428bca;
+  color: var(--link-text-color);
   text-decoration: none;
 }
 
 a:visited {
-  color: #428bca;
-}
-
-@media (prefers-color-scheme: dark) {
-  .App {
-    background: #333333;
-    color: white;
-  }
+  color: var(--link-text-color);
 }
