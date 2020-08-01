@@ -44,7 +44,7 @@ class ExpandedSearchResults extends React.Component {
     const tutorials = [];
     const updates = [];
 
-    Object.keys(r).map(iss => {
+    Object.keys(r).forEach(iss => {
       tutorials.push(
         ...r[iss].tutorials.map((t, idx) => (
           <Tutorial key={`tut-${iss}-${idx}`} tutorial={t} issueNumber={iss} />
