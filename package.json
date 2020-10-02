@@ -45,6 +45,8 @@
   },
   "prettier": {
     "semi": true,
-    "singleQuote": true
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none"
   }
 }
