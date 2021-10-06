@@ -55,7 +55,7 @@ class NewsletterView extends React.Component {
           </span>
           Download as PDF
         </a>
-        {issue.releases ? (
+        {issue.releases.length ? (
           <div>
             <h3>Releases</h3>
             <ul>
@@ -65,7 +65,7 @@ class NewsletterView extends React.Component {
             </ul>
           </div>
         ) : null}
-        {issue.tutorials ? (
+        {issue.tutorials.length ? (
           <div>
             <h3>Tutorials</h3>
             <ul className="tutorials">
@@ -75,7 +75,7 @@ class NewsletterView extends React.Component {
             </ul>
           </div>
         ) : null}
-        {issue.updates ? (
+        {issue.updates.length ? (
           <div>
             <h3>Updates</h3>
             This issue contains info/updates on the following Phaser-related
