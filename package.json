@@ -15,7 +15,7 @@
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
-    "husky": "^7.0.2",
+    "husky": "^7.0.0",
     "lint-staged": "^11.2.0",
     "prettier": "2.4.1",
     "yarn": "^1.22.15"
@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "prepare": "husky install"
   },
   "browserslist": [
     ">0.2%",
@@ -33,11 +34,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
