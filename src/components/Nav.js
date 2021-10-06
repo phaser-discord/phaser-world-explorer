@@ -27,7 +27,7 @@ const SortedNewsletters = props => {
   const dateSortedNewsletters = {};
 
   props.newsletters.forEach(issue => {
-    const year = issue.Date.split('/')[1];
+    const year = issue.Date.getFullYear();
 
     if (dateSortedNewsletters[year]) {
       dateSortedNewsletters[year].push(issue);
