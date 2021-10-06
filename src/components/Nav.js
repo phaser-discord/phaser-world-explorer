@@ -24,17 +24,19 @@ const menuTrigger = year => (
 );
 
 const SortedNewsletters = props => {
-  const dateSortedNewsletters = {};
+  const dateSortedNewsletters = props.newsletters.reduce(
+    (dateSortedNewsletters, issue) => {
+      const year = issue.date.getFullYear();
 
-  props.newsletters.forEach(issue => {
-    const year = issue.date.getFullYear();
-
-    if (dateSortedNewsletters[year]) {
-      dateSortedNewsletters[year].push(issue);
-    } else {
-      dateSortedNewsletters[year] = [issue];
-    }
-  });
+      if (dateSortedNewsletters[year]) {
+        dateSortedNewsletters[year].push(issue);
+      } else {
+        dateSortedNewsletters[year] = [issue];
+      }
+      return dateSortedNewsletters;
+    },
+    []
+  );
 
   return Object.keys(dateSortedNewsletters)
     .reverse()
