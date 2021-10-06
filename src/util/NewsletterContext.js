@@ -25,7 +25,7 @@ export class NewsletterProvider extends React.Component {
         res => {
           this.setState({
             isLoaded: true,
-            items: jsyaml.safeLoad(res)
+            items: jsyaml.load(res)
           });
         },
         err => {
@@ -46,10 +46,11 @@ export class NewsletterProvider extends React.Component {
   }
 }
 
-export const withNewsletter = Component => props => (
-  <Context.Consumer>
-    {({ isLoaded, error, items }) => (
-      <Component {...props} newsletter={{ isLoaded, error, items }} />
-    )}
-  </Context.Consumer>
-);
+export const withNewsletter = Component => props =>
+  (
+    <Context.Consumer>
+      {({ isLoaded, error, items }) => (
+        <Component {...props} newsletter={{ isLoaded, error, items }} />
+      )}
+    </Context.Consumer>
+  );
