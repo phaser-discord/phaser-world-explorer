@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { fetchAndParseItems } from './fetchAndParseItems';
+import { fetchAndParseIssues } from './fetchAndParseIssues';
 
 const Context = React.createContext({
   isLoaded: false,
   error: null,
-  items: null
+  issues: null
 });
 
 export class NewsletterProvider extends React.Component {
@@ -14,25 +14,24 @@ export class NewsletterProvider extends React.Component {
     this.state = {
       isLoaded: false,
       error: null,
-      items: null
+      issues: []
     };
   }
 
   componentDidMount() {
-    fetchAndParseItems(this.props.src).then(
-      res => {
+    fetchAndParseIssues(this.props.src)
+      .then(res => {
         this.setState({
           isLoaded: true,
-          items: res
+          issues: res
         });
-      },
-      err => {
+      })
+      .catch(err => {
         this.setState({
           isLoaded: true,
           error: err
         });
-      }
-    );
+      });
   }
 
   render() {
@@ -47,8 +46,8 @@ export class NewsletterProvider extends React.Component {
 export const withNewsletter = Component => props =>
   (
     <Context.Consumer>
-      {({ isLoaded, error, items }) => (
-        <Component {...props} newsletter={{ isLoaded, error, items }} />
+      {({ isLoaded, error, issues }) => (
+        <Component {...props} newsletter={{ isLoaded, error, issues }} />
       )}
     </Context.Consumer>
   );

@@ -1,6 +1,6 @@
 import jsyaml from 'js-yaml';
 
-export async function fetchAndParseItems(src) {
+export async function fetchAndParseIssues(src) {
   const res = await (await fetch(src)).text();
 
   const issues = jsyaml

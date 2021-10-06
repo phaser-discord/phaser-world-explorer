@@ -39,7 +39,7 @@ class ExpandedSearchResults extends React.Component {
       return null;
     }
 
-    const r = search(query, this.props.newsletter.items);
+    const r = search(query, this.props.newsletter.issues);
 
     const tutorials = [];
     const updates = [];

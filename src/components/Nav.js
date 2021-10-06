@@ -61,7 +61,7 @@ const Nav = props => {
         <h2>Newsletters</h2>
         {newsletter.isLoaded ? (
           <SortedNewsletters
-            newsletters={newsletter.items}
+            newsletters={newsletter.issues}
             onClick={props.onClickIssue}
           />
         ) : (

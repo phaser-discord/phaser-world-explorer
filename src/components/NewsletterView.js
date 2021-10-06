@@ -13,13 +13,13 @@ class NewsletterView extends React.Component {
     this.issueRef = React.createRef();
   }
   currentIssue() {
-    const { isLoaded, items } = this.props.newsletter;
+    const { isLoaded, issues } = this.props.newsletter;
     if (!isLoaded) {
       return null;
     }
 
     const issueNumber = Number(this.props.match.params.issue);
-    return items.find(i => i.issueNumber === issueNumber);
+    return issues.find(i => i.issueNumber === issueNumber);
   }
 
   render() {
