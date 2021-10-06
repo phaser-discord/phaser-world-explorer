@@ -27,7 +27,7 @@ class NewsletterView extends React.Component {
     if (!issue) {
       return null;
     }
-    this.props.history.listen(stuff =>
+    this.props.history.listen(() =>
       this.issueRef.current ? this.issueRef.current.focus() : null
     );
 
