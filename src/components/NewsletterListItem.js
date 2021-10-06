@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NewsletterListItem = ({ item }) =>
-  item ? (
-    <Link to={`/newsletter/issue/${item.Issue}`}>Issue {item.Issue}</Link>
-  ) : null;
+const NewsletterListItem = ({ item: { issueNumber } = {} }) => {
+  return (
+    issueNumber && (
+      <Link to={`/newsletter/issue/${issueNumber}`}>Issue {issueNumber}</Link>
+    )
+  );
+};
 
 export default NewsletterListItem;
