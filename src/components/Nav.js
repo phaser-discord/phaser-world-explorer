@@ -8,9 +8,9 @@ import { withNewsletter } from '../util/NewsletterContext';
 
 import './Nav.css';
 
-const mkLink = itm => (
-  <li key={`${itm.Issue}-li`}>
-    <NewsletterListItem item={itm} />
+const makeLink = issue => (
+  <li key={`${issue.issueNumber}-li`}>
+    <NewsletterListItem item={issue} />
   </li>
 );
 
@@ -27,7 +27,7 @@ const SortedNewsletters = props => {
   const dateSortedNewsletters = {};
 
   props.newsletters.forEach(issue => {
-    const year = issue.Date.getFullYear();
+    const year = issue.date.getFullYear();
 
     if (dateSortedNewsletters[year]) {
       dateSortedNewsletters[year].push(issue);
@@ -43,7 +43,7 @@ const SortedNewsletters = props => {
         <div key={year} className="issue-year">
           <Collapsible open trigger={menuTrigger(year)}>
             <ul onClick={props.onClick}>
-              {dateSortedNewsletters[year].map(mkLink)}
+              {dateSortedNewsletters[year].map(makeLink)}
             </ul>
           </Collapsible>
         </div>

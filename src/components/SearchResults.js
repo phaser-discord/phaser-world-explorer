@@ -56,7 +56,7 @@ class ExpandedSearchResults extends React.Component {
           <Update
             key={`upd-${iss}-${idx}`}
             update={u}
-            updateLink={r[iss].ref.Link}
+            updateLink={r[iss].ref.directLink}
             issueNumber={iss}
           />
         ))
