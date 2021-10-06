@@ -1,6 +1,6 @@
 import React from 'react';
 
-import jsyaml from 'js-yaml';
+import { fetchAndParseItems } from './fetchAndParseItems';
 
 const Context = React.createContext({
   isLoaded: false,
@@ -19,22 +19,20 @@ export class NewsletterProvider extends React.Component {
   }
 
   componentDidMount() {
-    fetch(this.props.src)
-      .then(res => res.text())
-      .then(
-        res => {
-          this.setState({
-            isLoaded: true,
-            items: jsyaml.load(res)
-          });
-        },
-        err => {
-          this.setState({
-            isLoaded: true,
-            error: err
-          });
-        }
-      );
+    fetchAndParseItems(this.props.src).then(
+      res => {
+        this.setState({
+          isLoaded: true,
+          items: res
+        });
+      },
+      err => {
+        this.setState({
+          isLoaded: true,
+          error: err
+        });
+      }
+    );
   }
 
   render() {
