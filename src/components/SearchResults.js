@@ -77,28 +77,25 @@ class ExpandedSearchResults extends React.Component {
   }
 
   render() {
-    const { searchArgs } = this.props;
-    if (!searchArgs) {
-      return null;
-    }
+    const { searchString } = this.props;
 
-    return (
+    return searchString ? (
       <>
-        <h2>Search Results: {searchArgs.get('q')}</h2>
-        {this.results(searchArgs.get('q'))}
+        <h2>Search Results: {searchString}</h2>
+        {this.results(searchString)}
       </>
-    );
+    ) : null;
   }
 }
 
 const SearchResults = props => {
   const search =
     props.location && props.location.search
-      ? new URLSearchParams(props.location.search)
+      ? new URLSearchParams(props.location.search).get('q')
       : null;
   return (
     <main className="searchResults">
-      <ExpandedSearchResults {...props} searchArgs={search} />
+      <ExpandedSearchResults {...props} searchString={search} />
     </main>
   );
 };
