@@ -1,5 +1,4 @@
 import React from 'react';
-import qs from 'query-string';
 
 import Card from './Card';
 import Tutorial from './Tutorial';
@@ -85,8 +84,8 @@ class ExpandedSearchResults extends React.Component {
 
     return (
       <>
-        <h2>Search Results: {searchArgs.q}</h2>
-        {this.results(searchArgs.q)}
+        <h2>Search Results: {searchArgs.get('q')}</h2>
+        {this.results(searchArgs.get('q'))}
       </>
     );
   }
@@ -95,7 +94,7 @@ class ExpandedSearchResults extends React.Component {
 const SearchResults = props => {
   const search =
     props.location && props.location.search
-      ? qs.parse(props.location.search)
+      ? new URLSearchParams(props.location.search)
       : null;
   return (
     <main className="searchResults">
