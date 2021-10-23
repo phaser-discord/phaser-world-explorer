@@ -10,7 +10,7 @@ class Search extends React.Component {
     this.state = { nextLocation: null };
     this.contentSearchRef = React.createRef();
 
-    this.handleSubmit = this.handleSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
   }
