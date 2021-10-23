@@ -1,5 +1,4 @@
 import React from 'react';
-import qs from 'query-string';
 import { Redirect } from 'react-router-dom';
 import './Search.css';
 
@@ -25,11 +24,12 @@ class Search extends React.Component {
   }
 
   handleSearch() {
+    const searchParams = new URLSearchParams();
+    searchParams.set('q', this.state.searchValue);
+
     const nextLocation = {
       pathname: '/search',
-      search: qs.stringify({
-        q: this.state.searchValue
-      })
+      search: searchParams.toString()
     };
 
     this.setState({ nextLocation });
