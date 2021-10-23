@@ -19,8 +19,8 @@ import fuzzy from 'fuzzy';
 const search = (searchString, data, tutVersion) =>
   data.reduce((acc, cur) => {
     const limitVersion = !!tutVersion;
-    const tutorials = cur.Tutorials || [];
-    const updates = cur.Updates || [];
+    const tutorials = cur.tutorials || [];
+    const updates = cur.updates || [];
 
     const tutorialMatches = tutorials.filter(
       t =>
@@ -35,7 +35,7 @@ const search = (searchString, data, tutVersion) =>
     );
 
     return {
-      [cur.Issue]: {
+      [cur.issueNumber]: {
         ref: cur,
         tutorials: tutorialMatches,
         updates: updateMatches
@@ -49,8 +49,8 @@ export const simpleSearch = (searchString, data, tutVersion) => {
 
   return data.reduce((acc, cur) => {
     const limitVersion = !!tutVersion;
-    const tutorials = cur.Tutorials || [];
-    const updates = cur.Updates || [];
+    const tutorials = cur.tutorials || [];
+    const updates = cur.updates || [];
 
     const tutorialMatches = tutorials.filter(t => {
       const versionMatch = !limitVersion || tutVersion === t.version;
@@ -67,7 +67,7 @@ export const simpleSearch = (searchString, data, tutVersion) => {
     );
 
     return {
-      [cur.Issue]: {
+      [cur.issueNumber]: {
         ref: cur,
         tutorials: tutorialMatches,
         updates: updateMatches
