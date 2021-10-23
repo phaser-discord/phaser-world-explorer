@@ -6,9 +6,6 @@ import { withNewsletter } from '../util/NewsletterContext';
 
 import './NewsletterView.css';
 
-const downloadURL = item =>
-  `https://phaser.io/images/newsletter/pdf/issue${item.Issue}.pdf`;
-
 class NewsletterView extends React.Component {
   constructor(props) {
     super(props);
@@ -16,13 +13,13 @@ class NewsletterView extends React.Component {
     this.issueRef = React.createRef();
   }
   currentIssue() {
-    const { isLoaded, items } = this.props.newsletter;
+    const { isLoaded, issues } = this.props.newsletter;
     if (!isLoaded) {
       return null;
     }
 
-    const issueNo = Number(this.props.match.params.issue);
-    return items.find(i => i.Issue === issueNo);
+    const issueNumber = Number(this.props.match.params.issue);
+    return issues.find(i => i.issueNumber === issueNumber);
   }
 
   render() {
@@ -30,62 +27,61 @@ class NewsletterView extends React.Component {
     if (!issue) {
       return null;
     }
-    this.props.history.listen(stuff =>
+    this.props.history.listen(() =>
       this.issueRef.current ? this.issueRef.current.focus() : null
     );
 
-    const date = new Date('01/' + issue.Date); // Add 01/ to be valid date, e.g. 01/01/2019
     const dateFormatted = new Intl.DateTimeFormat('en-US', {
-      // Request only month and year, since the day was fake
+      // Request only month and year, since the day is not stored
       month: 'short',
       year: 'numeric'
-    }).format(date);
+    }).format(issue.date);
 
     return (
       <main className="Issue-view">
         <h2>
           <a
-            href={issue.Link}
+            href={issue.directLink}
             target="_blank"
             rel="noopener noreferrer"
             ref={this.issueRef}
           >
-            Phaser World Issue {issue.Issue} ({dateFormatted})
+            Phaser World Issue {issue.issueNumber} ({dateFormatted})
           </a>
         </h2>
-        <a href={downloadURL(issue)} className="downloadLink">
+        <a href={issue.downloadLink} className="downloadLink">
           <span className="material-icons" aria-hidden>
             cloud_download
           </span>
           Download as PDF
         </a>
-        {issue.Releases ? (
+        {issue.releases.length ? (
           <div>
             <h3>Releases</h3>
             <ul>
-              {issue.Releases.map(release => {
+              {issue.releases.map(release => {
                 return <li key={release}>{release}</li>;
               })}
             </ul>
           </div>
         ) : null}
-        {issue.Tutorials ? (
+        {issue.tutorials.length ? (
           <div>
             <h3>Tutorials</h3>
             <ul className="tutorials">
-              {issue.Tutorials.map(tutorial => {
+              {issue.tutorials.map(tutorial => {
                 return <Tutorial tutorial={tutorial} key={tutorial.name} />;
               })}
             </ul>
           </div>
         ) : null}
-        {issue.Updates ? (
+        {issue.updates.length ? (
           <div>
             <h3>Updates</h3>
             This issue contains info/updates on the following Phaser-related
             systems/plugins/features/projects:
             <ul className="updates">
-              {issue.Updates.map(update => {
+              {issue.updates.map(update => {
                 return (
                   <li key={update}>
                     <Card content={update} />

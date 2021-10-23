@@ -1,5 +1,4 @@
 import React from 'react';
-import qs from 'query-string';
 import { Redirect } from 'react-router-dom';
 import './Search.css';
 
@@ -7,12 +6,16 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { nextLocation: null };
-    this.contentSearchRef = React.createRef();
+    this.state = { searchValue: '', nextLocation: null };
 
-    this.handleSubmit = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ searchValue: event.target.value });
   }
 
   handleSubmit(e) {
@@ -21,22 +24,18 @@ class Search extends React.Component {
   }
 
   handleSearch() {
-    const cur = this.contentSearchRef.current;
-    if (!cur) {
-      return;
-    }
+    const searchParams = new URLSearchParams();
+    searchParams.set('q', this.state.searchValue);
 
     const nextLocation = {
       pathname: '/search',
-      search: qs.stringify({
-        q: cur.value
-      })
+      search: searchParams.toString()
     };
 
     this.setState({ nextLocation });
 
     if (this.props.onSearch) {
-      this.props.onSearch(cur.value);
+      this.props.onSearch(this.state.searchValue);
     }
   }
 
@@ -58,9 +57,10 @@ class Search extends React.Component {
         <form onSubmit={this.handleSubmit} className="search">
           <div className="input">
             <input
-              ref={this.contentSearchRef}
               type="text"
               id={'search' + random}
+              value={this.state.searchValue}
+              onChange={this.handleChange}
             ></input>
           </div>
           <div className="button">

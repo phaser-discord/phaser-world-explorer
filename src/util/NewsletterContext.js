@@ -1,11 +1,11 @@
 import React from 'react';
 
-import jsyaml from 'js-yaml';
+import { fetchAndParseIssues } from './fetchAndParseIssues';
 
 const Context = React.createContext({
   isLoaded: false,
   error: null,
-  items: null
+  issues: null
 });
 
 export class NewsletterProvider extends React.Component {
@@ -14,27 +14,24 @@ export class NewsletterProvider extends React.Component {
     this.state = {
       isLoaded: false,
       error: null,
-      items: null
+      issues: []
     };
   }
 
   componentDidMount() {
-    fetch(this.props.src)
-      .then(res => res.text())
-      .then(
-        res => {
-          this.setState({
-            isLoaded: true,
-            items: jsyaml.load(res)
-          });
-        },
-        err => {
-          this.setState({
-            isLoaded: true,
-            error: err
-          });
-        }
-      );
+    fetchAndParseIssues(this.props.src)
+      .then(res => {
+        this.setState({
+          isLoaded: true,
+          issues: res
+        });
+      })
+      .catch(err => {
+        this.setState({
+          isLoaded: true,
+          error: err
+        });
+      });
   }
 
   render() {
@@ -49,8 +46,8 @@ export class NewsletterProvider extends React.Component {
 export const withNewsletter = Component => props =>
   (
     <Context.Consumer>
-      {({ isLoaded, error, items }) => (
-        <Component {...props} newsletter={{ isLoaded, error, items }} />
+      {({ isLoaded, error, issues }) => (
+        <Component {...props} newsletter={{ isLoaded, error, issues }} />
       )}
     </Context.Consumer>
   );

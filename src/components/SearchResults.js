@@ -1,5 +1,4 @@
 import React from 'react';
-import qs from 'query-string';
 
 import Card from './Card';
 import Tutorial from './Tutorial';
@@ -14,7 +13,7 @@ const Update = ({ update, updateLink, issueNumber }) => {
       <Card
         header={
           <>
-            {update}
+            <p>{update}</p>
             <div
               className="card-badge"
               aria-label="Issue where this update is from"
@@ -39,7 +38,7 @@ class ExpandedSearchResults extends React.Component {
       return null;
     }
 
-    const r = search(query, this.props.newsletter.items);
+    const r = search(query, this.props.newsletter.issues);
 
     const tutorials = [];
     const updates = [];
@@ -56,7 +55,7 @@ class ExpandedSearchResults extends React.Component {
           <Update
             key={`upd-${iss}-${idx}`}
             update={u}
-            updateLink={r[iss].ref.Link}
+            updateLink={r[iss].ref.directLink}
             issueNumber={iss}
           />
         ))
@@ -78,28 +77,25 @@ class ExpandedSearchResults extends React.Component {
   }
 
   render() {
-    const { searchArgs } = this.props;
-    if (!searchArgs) {
-      return null;
-    }
+    const { searchString } = this.props;
 
-    return (
+    return searchString ? (
       <>
-        <h2>Search Results: {searchArgs.q}</h2>
-        {this.results(searchArgs.q)}
+        <h2>Search Results: {searchString}</h2>
+        {this.results(searchString)}
       </>
-    );
+    ) : null;
   }
 }
 
 const SearchResults = props => {
   const search =
     props.location && props.location.search
-      ? qs.parse(props.location.search)
+      ? new URLSearchParams(props.location.search).get('q')
       : null;
   return (
     <main className="searchResults">
-      <ExpandedSearchResults {...props} searchArgs={search} />
+      <ExpandedSearchResults {...props} searchString={search} />
     </main>
   );
 };
