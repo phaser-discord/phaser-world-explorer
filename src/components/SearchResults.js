@@ -13,7 +13,7 @@ const Update = ({ update, updateLink, issueNumber }) => {
       <Card
         header={
           <>
-            {update}
+            <p>{update}</p>
             <div
               className="card-badge"
               aria-label="Issue where this update is from"

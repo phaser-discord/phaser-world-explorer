@@ -8,7 +8,12 @@
 }
 
 .updates .card-header {
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.updates .card-header p {
+  margin-top: 0;
 }
 
 @media (min-width: 500px) {
