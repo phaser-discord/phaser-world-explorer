@@ -1,11 +1,11 @@
 import search from './search';
-import jsyaml from 'js-yaml';
+import { fetchAndParseIssues } from './fetchAndParseIssues';
 
 describe('search', () => {
-  it('should run', () => {
+  it('should run', async () => {
     const testStr = 'Environment';
     const version = 'v3';
-    const results = search(testStr, testData, version);
+    const results = search(testStr, await testData, version);
     const issues = Object.keys(results);
 
     let str = `Searching for ${testStr}; version ${version}\n\n`;
@@ -23,8 +23,9 @@ describe('search', () => {
   });
 });
 
-const testData = jsyaml.safeLoad(`
+const testYamlString = `
 - Issue: 122
+  Date: 07/2018
   Link: https://madmimi.com/p/abd23c
   Tutorials:
     - name: Minimap tutorial
@@ -60,6 +61,7 @@ const testData = jsyaml.safeLoad(`
     - v2.10.6
 
 - Issue: 121
+  Date: 05/2018
   Link: https://madmimi.com/p/860f1c
   Tutorials:
     - name: Scenes Tutorial pt. 2
@@ -82,4 +84,7 @@ const testData = jsyaml.safeLoad(`
   Updates:
     - v3.7.0 development progress
     - Changes coming to Loader Plugin and File Types
-`);
+`;
+const testData = fetchAndParseIssues(
+  `data:text/plain,${encodeURIComponent(testYamlString)}`
+);
