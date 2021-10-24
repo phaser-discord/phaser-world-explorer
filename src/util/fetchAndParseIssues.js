@@ -17,6 +17,5 @@ export async function fetchAndParseIssues(src) {
         releases: Releases ?? []
       };
     });
-  console.log(issues);
   return issues;
 }
